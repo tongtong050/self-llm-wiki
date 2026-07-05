@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783226788705-zrn8mzdam",
+  "providerId": "claude",
+  "title": "回应用户问候",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783226788705,
+  "updatedAt": 1783228390933,
+  "lastResponseAt": 1783226819847,
+  "sessionId": "4dc69f32-0a77-49bc-8b62-f725eb611036",
+  "providerState": {
+    "providerSessionId": "4dc69f32-0a77-49bc-8b62-f725eb611036"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 470,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 29568,
+    "contextWindow": 200000,
+    "contextTokens": 30038,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}

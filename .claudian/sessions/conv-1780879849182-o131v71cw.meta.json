@@ -1,0 +1,24 @@
+{
+  "id": "conv-1780879849182-o131v71cw",
+  "providerId": "claude",
+  "title": "总结地铁故障知识库内容",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780879849183,
+  "updatedAt": 1782998716906,
+  "lastResponseAt": 1782998702956,
+  "sessionId": "dc28389f-5b1e-44b1-9721-a5ccf30f221a",
+  "providerState": {
+    "providerSessionId": "dc28389f-5b1e-44b1-9721-a5ccf30f221a"
+  },
+  "currentNote": "03-故障记录/17A02/2026-06-26 17032车171893车 M2 DCU严重故障.md",
+  "usage": {
+    "model": "opus",
+    "inputTokens": 1323,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 71936,
+    "contextWindow": 200000,
+    "contextTokens": 73259,
+    "percentage": 37,
+    "contextWindowIsAuthoritative": true
+  }
+}

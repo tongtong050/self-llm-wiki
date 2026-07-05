@@ -1,0 +1,22 @@
+{
+  "id": "conv-1782734991017-ddxyw18cm",
+  "providerId": "claude",
+  "title": "读取知识库目录结构并输出",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782734991017,
+  "updatedAt": 1782735030710,
+  "lastResponseAt": 1782735030710,
+  "sessionId": "315578bc-7cba-4cfb-aa31-2e8ea47fb437",
+  "providerState": {
+    "providerSessionId": "315578bc-7cba-4cfb-aa31-2e8ea47fb437"
+  },
+  "usage": {
+    "model": "opus[1m]",
+    "inputTokens": 505,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 29056,
+    "contextWindow": 1000000,
+    "contextTokens": 29561,
+    "percentage": 3
+  }
+}

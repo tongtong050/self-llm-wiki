@@ -1,0 +1,235 @@
+{
+  "main": {
+    "id": "55b04b7181ef8270",
+    "type": "split",
+    "children": [
+      {
+        "id": "614fe62d568876d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c6f11fe3bd71e04",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          },
+          {
+            "id": "d782e650a0cb777e",
+            "type": "leaf",
+            "state": {
+              "type": "metro-llm-wiki-view",
+              "state": {},
+              "icon": "globe",
+              "title": "Metro LLM Wiki"
+            }
+          },
+          {
+            "id": "d9afebe9c34075d3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CLAUDE"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d0011868422f49d1",
+    "type": "split",
+    "children": [
+      {
+        "id": "af0613be22cf3b0a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d1dbc65d796228b5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "c3867c64998b6195",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "9815352f3b938214",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b1653941575e5632",
+    "type": "split",
+    "children": [
+      {
+        "id": "202baa8c018377b7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39910a9327b83759",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "fd58dc094a3cb00c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "d3daaca092a8094e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "6cf4bdbb7e24712f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CLAUDE.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "CLAUDE 的大纲"
+            }
+          },
+          {
+            "id": "bff13067856eaa0b",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 656.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "metro-llm-wiki:Open metro dashboard": false,
+      "claudian:Open Claudian": false,
+      "templater-obsidian:Templater": false,
+      "tasknotes:Open mini calendar": false,
+      "tasknotes:Open advanced calendar": false,
+      "tasknotes:Open task list": false,
+      "tasknotes:Open agenda": false,
+      "tasknotes:Open kanban board": false,
+      "tasknotes:Open pomodoro": false,
+      "tasknotes:Open pomodoro stats": false,
+      "tasknotes:Create new task": false
+    }
+  },
+  "active": "d1dbc65d796228b5",
+  "lastOpenFiles": [
+    "README.md",
+    "03-故障记录/17A03/2026-07-05 123.md",
+    "CLAUDE.md",
+    "03-故障记录/17A03",
+    "02-工作任务/17A01/2026-07-05 1231.md",
+    "02-工作任务/17A01",
+    "03-故障记录/17A02/2026-07-05 17036#172161车TC2车近光灯不亮.md",
+    "03-故障记录/17A01/2026-07-05 粗纤维.md",
+    "03-故障记录/17A01",
+    "03-故障记录/17A02/2026-07-05 测试.md",
+    "03-故障记录/17A02/2026-07-05 1231.md",
+    "03-故障记录/17A02/2026-07-05 17032#PIS TC2司机广播控制主机故障.md",
+    "TaskNotes/Views/relationships.base",
+    "TaskNotes/Views/agenda-default.base",
+    "TaskNotes/Views/calendar-default.base",
+    "TaskNotes/Views/tasks-default.base",
+    "TaskNotes/Views/kanban-default.base",
+    "TaskNotes/Views/mini-calendar-default.base",
+    "TaskNotes/Views",
+    "03-故障记录/17A02/2026-06-04 17032#PIS TC2司机广播控制主机故障.md"
+  ]
+}

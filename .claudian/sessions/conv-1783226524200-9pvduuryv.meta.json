@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783226524200-9pvduuryv",
+  "providerId": "claude",
+  "title": "问候主人并检查触发文件",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783226524200,
+  "updatedAt": 1783226602463,
+  "lastResponseAt": 1783226602463,
+  "sessionId": "0cfd0793-2783-477b-89f7-afeb0c5af535",
+  "providerState": {
+    "providerSessionId": "0cfd0793-2783-477b-89f7-afeb0c5af535"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 202,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 27392,
+    "contextWindow": 200000,
+    "contextTokens": 27594,
+    "percentage": 14
+  }
+}

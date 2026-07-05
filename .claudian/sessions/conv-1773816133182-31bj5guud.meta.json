@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773816133182-31bj5guud",
+  "providerId": "claude",
+  "title": "现在有一列车报车门锁闭开关不同步故障，请你通过原有的故障专报查询一下过去的处理情况",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1773816133182,
+  "updatedAt": 1773817858336,
+  "lastResponseAt": 1773816293583,
+  "sessionId": null,
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 43997,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 43997,
+    "percentage": 22
+  }
+}

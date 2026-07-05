@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780880314419-56fce24v2",
+  "providerId": "claude",
+  "title": "Summarize May work tasks in detail",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780880314420,
+  "updatedAt": 1781743633683,
+  "lastResponseAt": 1780880415941,
+  "sessionId": "a91d028b-a1fc-4ec9-a778-705dea59f2b8",
+  "providerState": {
+    "providerSessionId": "a91d028b-a1fc-4ec9-a778-705dea59f2b8"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 62,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 70784,
+    "contextWindow": 200000,
+    "contextTokens": 70846,
+    "percentage": 35,
+    "contextWindowIsAuthoritative": true
+  }
+}

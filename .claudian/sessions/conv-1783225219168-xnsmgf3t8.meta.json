@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783225219168-xnsmgf3t8",
+  "providerId": "claude",
+  "title": "主人，您好！今天有什么需要我帮忙的吗？",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783225219168,
+  "updatedAt": 1783225620116,
+  "lastResponseAt": 1783225620116,
+  "sessionId": "8c3cbbbc-0e56-4f5f-99ec-f37ad76b6f12",
+  "providerState": {
+    "providerSessionId": "8c3cbbbc-0e56-4f5f-99ec-f37ad76b6f12"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 559,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 34048,
+    "contextWindow": 200000,
+    "contextTokens": 34607,
+    "percentage": 17
+  }
+}

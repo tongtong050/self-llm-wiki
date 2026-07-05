@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773885518267-iitr5m2nf",
+  "providerId": "claude",
+  "title": "总结这个文件路径下的md文件：工作日志/故障记录/17号线车门故障专报（王帷交接前），生成一个新的故...",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1773885518268,
+  "updatedAt": 1773888590613,
+  "lastResponseAt": 1773886278937,
+  "sessionId": null,
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 71908,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 71908,
+    "percentage": 36
+  }
+}

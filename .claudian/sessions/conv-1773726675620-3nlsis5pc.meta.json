@@ -1,0 +1,18 @@
+{
+  "id": "conv-1773726675620-3nlsis5pc",
+  "title": "Implement this plan:",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1773726675621,
+  "updatedAt": 1773726815458,
+  "lastResponseAt": 1773726683414,
+  "sessionId": null,
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 17113,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 17113,
+    "percentage": 9
+  }
+}

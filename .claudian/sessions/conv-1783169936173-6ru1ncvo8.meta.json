@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783169936173-6ru1ncvo8",
+  "providerId": "claude",
+  "title": "列出充电机常见故障",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783169936173,
+  "updatedAt": 1783171107828,
+  "lastResponseAt": 1783170207341,
+  "sessionId": "0bddf378-0b53-4b62-a161-52493bb6670a",
+  "providerState": {
+    "providerSessionId": "0bddf378-0b53-4b62-a161-52493bb6670a"
+  },
+  "usage": {
+    "model": "opus[1m]",
+    "inputTokens": 302,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 38912,
+    "contextWindow": 1000000,
+    "contextTokens": 39214,
+    "percentage": 4
+  }
+}
