@@ -1,0 +1,22 @@
+{
+  "id": "conv-1773726532238-o6n4e6n3q",
+  "providerId": "claude",
+  "title": "# Role",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1773726532239,
+  "updatedAt": 1773726919243,
+  "lastResponseAt": 1773726919243,
+  "sessionId": null,
+  "externalContextPaths": [
+    "D:\\01-工作\\知识笔记\\个人知识库\\cangcu"
+  ],
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 32213,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 32213,
+    "percentage": 16
+  }
+}

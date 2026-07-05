@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773815913851-veba075ts",
+  "providerId": "claude",
+  "title": "我需要你不改变笔记的文字内容，只整理格式，输出一份新的笔记",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1773815913851,
+  "updatedAt": 1773816065434,
+  "lastResponseAt": 1773815971296,
+  "sessionId": null,
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 18457,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 18457,
+    "percentage": 9
+  }
+}

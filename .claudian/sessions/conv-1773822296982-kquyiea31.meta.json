@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773822296982-kquyiea31",
+  "providerId": "claude",
+  "title": "你是一位专业的 Markdown 文档格式整理助手。",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1773822296983,
+  "updatedAt": 1773888592435,
+  "lastResponseAt": 1773823304027,
+  "sessionId": null,
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

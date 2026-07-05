@@ -1,0 +1,9 @@
+{
+	"id": "metro-llm-wiki",
+	"name": "Metro LLM Wiki",
+	"version": "0.1.0",
+	"minAppVersion": "1.8.0",
+	"description": "Metro vehicle digital workstation with LLM wiki integration — task management, fault tracking, technical notices, calendar, heatmap, and ingest-triggered knowledge base.",
+	"author": "Tongtong",
+	"isDesktopOnly": false
+}

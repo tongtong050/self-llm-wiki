@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782974133812-z4n17j1zy",
+  "providerId": "claude",
+  "title": "Create functional requirements from pain points",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782974133816,
+  "updatedAt": 1782974270973,
+  "lastResponseAt": 1782974270973,
+  "sessionId": "44252683-a4b9-40b2-879a-6309389c1ea6",
+  "providerState": {
+    "providerSessionId": "44252683-a4b9-40b2-879a-6309389c1ea6"
+  },
+  "currentNote": "02-工作任务/Tasks/规程管理系统及故障报单需求.md",
+  "usage": {
+    "model": "opus[1m]",
+    "inputTokens": 3134,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 68096,
+    "contextWindow": 1000000,
+    "contextTokens": 71230,
+    "percentage": 7
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "conv-1771916411890-raf1wgxlw",
+  "providerId": "claude",
+  "title": "你是什么模型",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1771916411891,
+  "updatedAt": 1773726489361,
+  "lastResponseAt": 1772003500840,
+  "sessionId": null,
+  "usage": {
+    "model": "kimi-k2-turbo-preview",
+    "inputTokens": 15716,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 15716,
+    "percentage": 8
+  }
+}

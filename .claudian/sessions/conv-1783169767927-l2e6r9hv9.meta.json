@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783169767927-l2e6r9hv9",
+  "providerId": "claude",
+  "title": "主人，我来为您处理这份技术通知的识别，生成会话标题。在开始之前，我先读取知识库的状态信息。\n\n...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783169767927,
+  "updatedAt": 1783225993002,
+  "lastResponseAt": 1783225993002,
+  "sessionId": "9d3b3890-f1a7-4b97-8681-a5391e973341",
+  "providerState": {
+    "providerSessionId": "9d3b3890-f1a7-4b97-8681-a5391e973341"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 103,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 67584,
+    "contextWindow": 200000,
+    "contextTokens": 67687,
+    "percentage": 34
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "conv-1777251278150-41ohd09e8",
+  "providerId": "claude",
+  "title": "Analyze door fault report for Line 17",
+  "titleGenerationStatus": "success",
+  "createdAt": 1777251278150,
+  "updatedAt": 1780879687684,
+  "lastResponseAt": 1780560750303,
+  "sessionId": "8c2cc1ae-8918-45c3-a573-b30cebdd323c",
+  "providerState": {
+    "providerSessionId": "8c2cc1ae-8918-45c3-a573-b30cebdd323c",
+    "previousProviderSessionIds": [
+      "8ba7f301-7688-4f4e-bf2c-8e9bb1636014"
+    ]
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 787,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 62976,
+    "contextWindow": 200000,
+    "contextTokens": 63763,
+    "percentage": 32,
+    "contextWindowIsAuthoritative": true
+  }
+}
