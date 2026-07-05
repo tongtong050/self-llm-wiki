@@ -26,23 +26,9 @@
               "icon": "globe",
               "title": "Metro LLM Wiki"
             }
-          },
-          {
-            "id": "d9afebe9c34075d3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CLAUDE.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CLAUDE"
-            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -211,25 +197,31 @@
   },
   "active": "d1dbc65d796228b5",
   "lastOpenFiles": [
+    "README.md.tmp.18824.9476c4260d23",
+    "tools/__pycache__/__init__.cpython-311.pyc",
+    "tools/__pycache__/_utils.cpython-311.pyc",
+    "tools/__pycache__/review.cpython-311.pyc",
+    "tools/__pycache__/health.cpython-311.pyc",
+    "tools/__pycache__",
+    "tools/__init__.py",
+    "tools/_utils.py",
+    "tools/review.py",
+    "tools/refresh.py",
+    "tools/query.py",
+    "CLAUDE.md",
+    "06-模板/整改通知模板.md",
+    "06-模板/故障记录模板.md",
+    "06-模板/技术分析模板.md",
+    "06-模板/工作总结模板.md",
+    "06-模板/工作任务模板.md",
+    "02-工作任务/17A01/2026-07-05 1231.md",
     "README.md",
     "03-故障记录/17A03/2026-07-05 123.md",
-    "CLAUDE.md",
-    "03-故障记录/17A03",
-    "02-工作任务/17A01/2026-07-05 1231.md",
-    "02-工作任务/17A01",
     "03-故障记录/17A02/2026-07-05 17036#172161车TC2车近光灯不亮.md",
     "03-故障记录/17A01/2026-07-05 粗纤维.md",
-    "03-故障记录/17A01",
     "03-故障记录/17A02/2026-07-05 测试.md",
     "03-故障记录/17A02/2026-07-05 1231.md",
     "03-故障记录/17A02/2026-07-05 17032#PIS TC2司机广播控制主机故障.md",
-    "TaskNotes/Views/relationships.base",
-    "TaskNotes/Views/agenda-default.base",
-    "TaskNotes/Views/calendar-default.base",
-    "TaskNotes/Views/tasks-default.base",
-    "TaskNotes/Views/kanban-default.base",
-    "TaskNotes/Views/mini-calendar-default.base",
-    "TaskNotes/Views",
     "03-故障记录/17A02/2026-06-04 17032#PIS TC2司机广播控制主机故障.md"
   ]
 }
