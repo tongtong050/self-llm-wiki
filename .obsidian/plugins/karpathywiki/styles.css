@@ -1,0 +1,1194 @@
+/* LLM Wiki Plugin Styles */
+
+/* Number input field width for settings */
+.llm-wiki-number-input {
+  width: 100px;
+}
+
+/* 查询模态框样式 */
+.llm-wiki-query-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 8px;
+  font-family: var(--font-text);
+  font-size: 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  resize: none;
+}
+
+.llm-wiki-answer-modal {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 10px;
+  font-family: var(--font-text);
+  line-height: 1.6;
+}
+
+/* Advanced LLM settings — collapsed by default, expanded when .llm-wiki-advanced-expanded is added */
+.llm-wiki-advanced-settings {
+  display: none;
+  padding-left: 16px;
+  border-left: 2px solid var(--background-modifier-border);
+  margin-left: 8px;
+}
+
+.llm-wiki-settings .llm-wiki-advanced-expanded {
+  display: block;
+}
+
+/* Cursor hint on the heading that toggles the advanced section */
+.llm-wiki-settings .llm-wiki-advanced-toggle {
+  cursor: pointer;
+}
+
+/* 设置面板样式 */
+.llm-wiki-settings .setting-item {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding: 12px 0;
+}
+
+.llm-wiki-settings .setting-item:last-child {
+  border-bottom: none;
+}
+
+/* 命令面板提示 */
+.llm-wiki-notice {
+  padding: 10px 15px;
+  background: var(--background-modifier-success);
+  color: var(--text-on-accent);
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+/* Query View (right-docked side panel) */
+.llm-wiki-query-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.llm-wiki-query-content {
+  height: 100%;
+}
+
+.llm-wiki-query-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.llm-wiki-query-header {
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 15px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex-shrink: 0;
+}
+
+.llm-wiki-query-hint {
+  background: var(--background-secondary);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex-shrink: 0;
+}
+
+.llm-wiki-query-history {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 50px 12px 12px;
+  background: var(--background-primary);
+}
+
+.llm-wiki-query-input-container {
+  border-top: 1px solid var(--background-modifier-border);
+  padding: 12px;
+  background: var(--background-primary);
+  flex-shrink: 0;
+}
+
+.llm-wiki-query-button-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.llm-wiki-query-send-btn {
+  flex: 2;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+.llm-wiki-query-send-btn:hover:not(:disabled) {
+  background: var(--interactive-accent-hover);
+  filter: brightness(1.08);
+}
+.llm-wiki-query-send-btn:disabled {
+  background: var(--background-modifier-border);
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+.llm-wiki-query-send-btn:disabled:hover {
+  background: var(--background-modifier-border);
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+
+.llm-wiki-query-stop-btn {
+  flex: 2;
+  background: var(--text-error);
+  color: var(--text-on-accent);
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.llm-wiki-query-save-btn {
+  flex: 1;
+  background: var(--interactive-normal);
+  color: var(--text-normal);
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.llm-wiki-query-clear-btn {
+  background: var(--interactive-normal);
+  color: var(--text-muted);
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.llm-wiki-query-count {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.llm-wiki-query-message-wrapper {
+  margin-bottom: 24px;
+  display: block;
+  position: relative;
+}
+
+.llm-wiki-query-message-label {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+}
+
+.llm-wiki-query-message-body {
+  font-size: 14px;
+  line-height: 1.6;
+  user-select: text;
+}
+
+/* Markdown element styles — mirror Obsidian's native rendering */
+.llm-wiki-query-message-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.llm-wiki-query-message-body th,
+.llm-wiki-query-message-body td {
+  border: 1px solid var(--table-border-color, var(--background-modifier-border));
+  padding: 6px 13px;
+  text-align: left;
+}
+
+.llm-wiki-query-message-body th {
+  background-color: var(--table-header-background, var(--background-secondary));
+  font-weight: 600;
+}
+
+.llm-wiki-query-message-body tr:nth-child(even) {
+  background-color: var(--table-row-alt-background, var(--background-secondary-alt));
+}
+
+.llm-wiki-query-message-body pre {
+  background: var(--code-background, var(--background-secondary));
+  padding: 12px 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.llm-wiki-query-message-body code {
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background: var(--code-background, var(--background-secondary));
+}
+
+.llm-wiki-query-message-body pre > code {
+  padding: 0;
+  background: none;
+}
+
+.llm-wiki-query-message-body blockquote {
+  border-left: 3px solid var(--blockquote-border-color, var(--interactive-accent));
+  margin: 12px 0;
+  padding: 4px 16px;
+  color: var(--text-muted);
+}
+
+.llm-wiki-query-message-body ul,
+.llm-wiki-query-message-body ol {
+  padding-left: 24px;
+}
+
+.llm-wiki-query-message-body h1,
+.llm-wiki-query-message-body h2,
+.llm-wiki-query-message-body h3,
+.llm-wiki-query-message-body h4 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.llm-wiki-query-message-body hr {
+  border: none;
+  border-top: 1px solid var(--background-modifier-border);
+  margin: 16px 0;
+}
+
+/* Copy button */
+.llm-wiki-query-copy-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: var(--text-muted);
+}
+
+.llm-wiki-query-message-wrapper:hover .llm-wiki-query-copy-btn,
+.llm-wiki-query-response-live .llm-wiki-query-copy-btn {
+  opacity: 1;
+}
+
+.llm-wiki-query-copy-btn:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+/* Retrieval-arm label (persistent after response) */
+.llm-wiki-query-retrieval-label {
+  margin-top: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+  opacity: 0.85;
+  border-top: 1px solid var(--background-modifier-border-hover);
+  padding-top: 6px;
+}
+
+.llm-wiki-query-retrieval-label-clickable {
+  cursor: pointer;
+}
+.llm-wiki-query-retrieval-label-clickable:hover {
+  opacity: 1;
+  color: var(--text-normal);
+}
+
+.llm-wiki-query-retrieval-detail {
+  display: none;
+  margin-top: 4px;
+  padding: 6px 10px;
+  background: var(--background-secondary);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-normal);
+  font-family: var(--font-monospace);
+  border-left: 2px solid var(--interactive-accent);
+}
+
+.llm-wiki-query-retrieval-detail-open {
+  display: block;
+}
+
+.llm-wiki-query-retrieval-page {
+  padding: 2px 0;
+  line-height: 1.5;
+}
+
+.llm-wiki-query-message-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.llm-wiki-query-message-user .llm-wiki-query-message-label {
+  text-align: right;
+}
+
+.llm-wiki-query-message-user .llm-wiki-query-message-body {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent, var(--text-normal));
+  padding: 12px 16px;
+  border-radius: 18px 18px 4px 18px;
+  max-width: 80%;
+}
+
+/* v1.23.2 (#221 Variant 2): vertical turn indicator on the right edge. */
+.llm-wiki-turn-indicator {
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 4px;
+  background: var(--background-primary-alt, var(--background-primary));
+  border: 1px solid var(--background-modifier-border-hover);
+  border-radius: 12px;
+  z-index: 5;
+}
+
+.llm-wiki-turn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.llm-wiki-turn-dot:hover {
+  background: var(--text-muted);
+  transform: scale(1.25);
+}
+
+.llm-wiki-turn-dot-active {
+  background: var(--interactive-accent);
+}
+
+/* Tooltip visible on hover, positioned to the left of the dot */
+.llm-wiki-turn-dot-tooltip {
+  display: none;
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--background-secondary-alt, var(--background-secondary));
+  color: var(--text-normal);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  z-index: 10;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.llm-wiki-turn-dot-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.llm-wiki-turn-dot-wrapper:hover .llm-wiki-turn-dot-tooltip {
+  display: block;
+}
+
+.llm-wiki-query-message-assistant .llm-wiki-query-message-body {
+  /* markdown rendered by Obsidian has its own styling */
+}
+
+/* v1.20.0: collapsible thinking-block panel inside the assistant answer.
+   Renders above the visible markdown, default collapsed (ChatGPT-style). */
+.llm-wiki-query-thinking-block {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  margin: 0 0 12px 0;
+  padding: 6px 12px;
+  font-size: 0.85em;
+}
+
+.llm-wiki-query-thinking-block > summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  user-select: none;
+  list-style: none;
+  padding: 4px 0;
+}
+
+.llm-wiki-query-thinking-block > summary::-webkit-details-marker {
+  display: none;
+}
+
+.llm-wiki-query-thinking-block > summary::before {
+  content: '▸ ';
+  display: inline-block;
+  transition: transform 0.15s ease;
+  margin-right: 4px;
+}
+
+.llm-wiki-query-thinking-block[open] > summary::before {
+  content: '▾ ';
+}
+
+.llm-wiki-query-thinking-content {
+  background: var(--background-primary);
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin: 6px 0 4px 0;
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-muted);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+/* Live response (currently generating) */
+.llm-wiki-query-response-live {
+  margin-bottom: 16px;
+}
+
+.llm-wiki-query-response-live .llm-wiki-query-message-label {
+  color: var(--interactive-accent);
+}
+
+.llm-wiki-query-status {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* v1.23.0 P2: Streaming plain-text preview — shown during accumulation,
+   replaced by full MarkdownRenderer output on completion.
+   Matches .llm-wiki-query-message-body typography for seamless transition. */
+.llm-wiki-query-stream-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: var(--font-text-size);
+  line-height: var(--line-height);
+  color: var(--text-normal);
+  padding: 0;
+}
+
+/* Suggest Save Modal (post-query feedback) */
+.llm-wiki-suggest-save-modal {
+  padding: 20px;
+}
+
+.llm-wiki-suggest-save-modal h3 {
+  margin-bottom: 12px;
+}
+
+.llm-wiki-suggest-save-modal p {
+  margin-bottom: 20px;
+  color: var(--text-muted);
+}
+
+.llm-wiki-suggest-save-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Settings panel UI elements */
+.llm-wiki-ollama-hint {
+  color: var(--text-muted);
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.llm-wiki-connection-status {
+  margin: 12px 0;
+  font-weight: 500;
+}
+.llm-wiki-status-ready {
+  color: var(--color-green);
+}
+.llm-wiki-status-notready {
+  color: var(--color-orange);
+}
+
+.llm-wiki-status-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.llm-wiki-plugin-info {
+  margin: 16px 0 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.llm-wiki-blue-infobox {
+  background: var(--background-modifier-hover);
+  border: 1px solid var(--interactive-accent);
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-accent);
+  font-weight: 500;
+}
+
+.llm-wiki-yellow-infobox {
+  background: var(--background-modifier-warning);
+  border: 1px solid var(--color-orange);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-warning);
+}
+
+.llm-wiki-section-hint {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 0 0 8px 0;
+}
+
+/* Ingestion status bar */
+.llm-wiki-status-bar-hidden {
+  display: none;
+}
+
+/* Issue #85 v2: Tag chip input (GitHub Issue Labels style) */
+.llm-wiki-tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;       /* chips top-aligned; input on its own row */
+  align-content: flex-start;
+  gap: 4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  min-height: 32px;
+  width: 100%;
+  background: var(--background-primary);
+  /* No left-padding from the input's border-box; chips start at padding-left. */
+  box-sizing: border-box;
+}
+.llm-wiki-tag-container:focus-within {
+  border-color: var(--interactive-accent);
+}
+.llm-wiki-tag-container--duplicate {
+  animation: llm-wiki-tag-shake 0.4s ease;
+}
+@keyframes llm-wiki-tag-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); border-color: var(--color-orange); }
+  75% { transform: translateX(4px); border-color: var(--color-orange); }
+}
+.llm-wiki-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--background-modifier-hover);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: var(--text-normal);
+  font-family: var(--font-text);
+}
+.llm-wiki-tag-chip-remove {
+  cursor: pointer;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+  font-size: 14px;
+  line-height: 1;
+}
+.llm-wiki-tag-chip-remove:hover {
+  color: var(--color-orange);
+}
+.llm-wiki-tag-input {
+  border: none;
+  outline: none;
+  /* Force the input onto its own row below the chips. flex-basis:100%
+     makes it span the full container width regardless of how many
+     chips exist; flex-shrink:1 lets it shrink when the container is
+     narrow (Obsidian narrow settings pane). */
+  flex: 0 0 100%;
+  order: 99;             /* always last, after all chips */
+  min-height: 22px;
+  background: transparent;
+  color: var(--text-normal);
+  font-family: var(--font-text);
+  font-size: 13px;
+}
+.llm-wiki-tag-sr-live {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Issue #85 v4: Default-reference fallback tags. When the persisted
+   custom CSV is empty, the chip input materializes the default
+   vocabulary (e.g. person/organization/…) as fully-editable chips —
+   visually identical to user-added ones, with a × remove button.
+   They are an editable baseline, not a read-only preview. */
+
+/* Operation History Panel: custom date range inputs */
+.llm-wiki-custom-range {
+  display: none;
+  gap: 6px;
+  align-items: center;
+}
+/* Chain selector to override base display:none without the specificity hack.
+   Obsidian review bot flags inline specificity overrides; higher specificity
+   (2 classes) wins over the single-class base rule regardless of CSS load order. */
+.llm-wiki-custom-range.llm-wiki-custom-range-visible {
+  display: flex;
+}
+/* Date input: calendar icon left-aligned, text right-aligned */
+.llm-wiki-date-input {
+  padding: 4px 8px 4px 28px;
+  border-radius: 4px;
+  border: 1px solid var(--background-modifier-border);
+  min-width: 120px;
+  text-align: right;
+}
+/* Ensure calendar icon doesn't overlap text */
+.llm-wiki-date-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 8px;
+  cursor: pointer;
+}
+
+/* v1.22.0 #97: Schema diff Modal — IDE-style dual-pane preview. */
+.llm-wiki-schema-diff-modal {
+  /* The Modal element itself is a child of the Obsidian modal container.
+   * We size the inner content here, but Obsidian constrains the
+   * .modal-container max-width. We override the container so the
+   * diff has enough horizontal space for two side-by-side panes. */
+  min-width: 720px;
+}
+
+/* Obsidian's default modal width is too narrow for a side-by-side
+ * diff. We target the modal-container via the .llm-wiki-schema-diff-modal
+ * class added to BOTH modalEl (outer .modal) and contentEl (inner content)
+ * in onOpen. Direct class selector avoids :has() (Obsidian review warning:
+ * :has causes broad selector invalidation → perf cost). */
+.modal.llm-wiki-schema-diff-modal {
+  width: min(90vw, 1100px);
+}
+
+.llm-wiki-schema-diff-panes {
+  display: flex;
+  gap: 8px;
+  max-height: 50vh;
+  overflow: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  /* Outer container scrolls. The background lives here so the
+   * scrolled-into-view rows are filled all the way down (not just
+   * the first 50vh worth, leaving grey gaps when content is short).
+   * The pane-level background is set to "transparent" so it does
+   * not double-fill on top of the outer. */
+  background: var(--background-secondary);
+}
+
+.llm-wiki-schema-diff-pane {
+  flex: 1;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 8px;
+  /* Transparent so the outer's background shows through. The
+   * .llm-wiki-schema-diff-row-highlight overlay paints red on
+   * individual rows. */
+  background: transparent;
+}
+
+.llm-wiki-schema-diff-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.llm-wiki-schema-diff-row-del {
+  /* Red-tinted background + red left border for the LEFT column
+   * (line removed from current schema). Text inherits pane color
+   * so contrast is preserved in both light and dark themes. */
+  background: rgba(var(--color-red-rgb, 255, 0, 0), 0.12);
+  border-left: 3px solid var(--text-error);
+}
+
+.llm-wiki-schema-diff-row-add {
+  /* Green-tinted background + green left border for the RIGHT column
+   * (line added by the LLM). Text inherits pane color. */
+  background: rgba(var(--color-green-rgb, 0, 255, 0), 0.12);
+  border-left: 3px solid var(--text-success);
+}
+
+.llm-wiki-schema-diff-gutter {
+  flex: 0 0 40px;
+  color: var(--text-faint);
+  text-align: right;
+  padding-right: 8px;
+  user-select: none;
+}
+
+.llm-wiki-schema-diff-content {
+  flex: 1;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Content highlight — left column (del) gets a red-toned background tint,
+ * right column (add) gets a green-toned background tint. Text color is
+ * inherited from the parent (no override — keeps contrast readable in
+ * both light and dark themes). */
+
+/* Left column: deletion (line removed from current schema) */
+.llm-wiki-schema-diff-pane-left .llm-wiki-schema-diff-content-highlight {
+  background: rgba(var(--color-red-rgb, 255, 0, 0), 0.08);
+}
+
+/* Right column: addition (line added by the LLM) */
+.llm-wiki-schema-diff-pane-right .llm-wiki-schema-diff-content-highlight {
+  background: rgba(var(--color-green-rgb, 0, 255, 0), 0.08);
+}
+
+.llm-wiki-schema-diff-summary {
+  color: var(--text-muted);
+  margin: 0 0 8px 0;
+}
+
+/* v1.22.0 #97: LLM's rationale — shown before the diff in BOTH empty
+ * and has-changes mode so the user can read the "why" before deciding. */
+.llm-wiki-schema-diff-rationale {
+  border-left: 3px solid var(--text-accent);
+  background: var(--background-secondary);
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin: 0 0 12px 0;
+}
+
+.llm-wiki-schema-diff-rationale-text {
+  margin: 0;
+  color: var(--text-normal);
+  white-space: pre-wrap;
+  font-size: 0.9em;
+}
+
+.llm-wiki-schema-diff-regen-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.llm-wiki-schema-diff-regen-label {
+  margin: 0 0 4px 0;
+  font-weight: bold;
+}
+
+.llm-wiki-schema-diff-regen-textarea {
+  width: 100%;
+  min-height: 50px;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.llm-wiki-schema-diff-btn-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.llm-wiki-schema-diff-empty-banner {
+  background: var(--background-modifier-border);
+  border-left: 3px solid var(--text-accent);
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin: 0 0 12px 0;
+}
+
+.llm-wiki-schema-diff-empty-title {
+  font-weight: bold;
+  margin: 0 0 4px 0;
+}
+
+.llm-wiki-schema-diff-empty-rationale {
+  margin: 0;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+/* === v1.23.0 Multi-File Suggest Modal (#130) === */
+/* v1.23.0 fix (2026-06-28): sizing the outer `.modal` container
+ * directly, not the inner `contentEl`. The original CSS put `width:
+ * 80vw; min-width: 720px;` on `.llm-wiki-multi-file-modal`, but
+ * contentEl is a child of the Obsidian modal container whose own
+ * width is capped — the inner `80vw` was a no-op. Now we add the
+ * class to BOTH modalEl (outer) and contentEl (inner) in onOpen
+ * (see modals.ts) and target the outer with the `.modal.…` selector
+ * here. Same pattern as SchemaDiffModal (v1.22.0 #97). */
+.modal.llm-wiki-multi-file-modal {
+  /* Outer container width. min(90vw, 1100px) keeps it on smaller
+   * displays while giving the two-pane tree room on standard
+   * desktops. */
+  width: min(90vw, 1100px);
+}
+.llm-wiki-multi-file-modal {
+  min-width: 720px;
+  max-height: 80vh;
+}
+.llm-wiki-multi-file-modal .llm-wiki-modal-hint {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  margin: 0 0 12px;
+}
+.llm-wiki-multi-file-search {
+  width: 100%;
+  margin-bottom: 8px;
+}
+.llm-wiki-multi-file-panes {
+  display: flex;
+  gap: 12px;
+  min-height: 360px;
+  max-height: 55vh;
+}
+.llm-wiki-multi-file-left,
+.llm-wiki-multi-file-right {
+  flex: 1;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 4px;
+  overflow-y: auto;
+  background: var(--background-primary);
+}
+
+/* Tree: <details>/<summary> for each folder, with a "select all" inline
+ * button. We restyle the default triangle to use a folder icon glyph
+ * for visual parity with the Obsidian file explorer. */
+.llm-wiki-multi-file-folder {
+  margin: 0 0 4px;
+}
+.llm-wiki-multi-file-folder > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.llm-wiki-multi-file-folder > summary::-webkit-details-marker {
+  display: none;
+}
+.llm-wiki-multi-file-folder > summary::before {
+  content: '▸';
+  display: inline-block;
+  font-size: var(--font-ui-small);
+  width: 12px;
+  transition: transform 0.1s;
+  color: var(--text-muted);
+}
+.llm-wiki-multi-file-folder[open] > summary::before {
+  transform: rotate(90deg);
+}
+.llm-wiki-multi-file-folder > summary:hover {
+  background: var(--background-modifier-hover);
+}
+.llm-wiki-multi-file-folder-name {
+  flex: 1;
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.llm-wiki-multi-file-folder-count {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  font-weight: normal;
+}
+.llm-wiki-multi-file-folder-bulk {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: var(--font-ui-smaller);
+  cursor: pointer;
+}
+/* v1.23.0 fix (2026-06-28): nested <details> indent. Each level
+ * adds 14px of left padding so 3+ folder levels don't visually
+ * collapse. The `>` direct-child selector keeps the indent scoped
+ * to the immediate level — subfolders inside a subfolder get the
+ * indent independently. */
+.llm-wiki-multi-file-folder > .llm-wiki-multi-file-folder {
+  margin-left: 14px;
+}
+.llm-wiki-multi-file-folder-bulk:hover {
+  background: var(--interactive-accent-hover);
+}
+.llm-wiki-multi-file-folder-list {
+  padding: 2px 0 4px 18px;
+}
+.llm-wiki-multi-file-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: var(--font-ui-small);
+}
+.llm-wiki-multi-file-row:hover {
+  background: var(--background-modifier-hover);
+}
+.llm-wiki-multi-file-row-selected {
+  background: var(--background-modifier-active-hover);
+}
+.llm-wiki-multi-file-row-ingested {
+  opacity: 0.55;
+  cursor: default;
+}
+.llm-wiki-multi-file-row-ingested:hover {
+  background: transparent;
+}
+.llm-wiki-multi-file-basename {
+  flex: 0 1 auto;
+  font-family: var(--font-monospace);
+}
+.llm-wiki-multi-file-parent {
+  flex: 1;
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.llm-wiki-multi-file-ingested-tag {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: var(--font-ui-smaller);
+  margin-left: auto;
+}
+/* v1.23.0 Phase 5.1.5 stage 3: status icons + per-row cancel
+ * button on the right pane. The icon is a leading single-glyph
+ * marker; the cancel button lives at the row's right edge. */
+.llm-wiki-multi-file-status-icon {
+  flex: 0 0 auto;
+  font-size: var(--font-ui-small);
+  margin-right: 4px;
+}
+.llm-wiki-multi-file-status {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  margin-right: 8px;
+}
+.llm-wiki-multi-file-error {
+  color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+  margin-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30%;
+}
+.llm-wiki-multi-file-cancel {
+  flex: 0 0 auto;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 3px;
+  padding: 0 6px;
+  margin-left: auto;
+  cursor: pointer;
+  font-size: var(--font-ui-small);
+  line-height: 1.4;
+}
+.llm-wiki-multi-file-cancel:hover:not(:disabled) {
+  background: var(--background-modifier-hover);
+  color: var(--text-error);
+  border-color: var(--text-error);
+}
+.llm-wiki-multi-file-cancel:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.llm-wiki-multi-file-cancel-all {
+  background: transparent;
+  color: var(--text-error);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 3px;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: var(--font-ui-smaller);
+}
+.llm-wiki-multi-file-cancel-all:hover {
+  background: var(--background-modifier-hover);
+}
+.llm-wiki-multi-file-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+.llm-wiki-multi-file-remove:hover {
+  color: var(--text-error);
+}
+.llm-wiki-multi-file-empty {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+.llm-wiki-multi-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+.llm-wiki-multi-file-count {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+.llm-wiki-multi-file-actions button {
+  padding: 6px 14px;
+}
+
+/* v1.24.0 #251: Custom Query Instructions collapsible panel.
+   Renders inside the Query Wiki input area; collapsed by default. */
+.llm-wiki-query-instructions-block {
+  margin: 12px 0 8px 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-secondary);
+}
+.llm-wiki-query-instructions-block > summary {
+  cursor: pointer;
+  padding: 6px 12px;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.llm-wiki-query-instructions-block > summary::-webkit-details-marker {
+  display: none;
+}
+.llm-wiki-query-instructions-block > summary::before {
+  content: '▸';
+  display: inline-block;
+  transition: transform 0.15s ease;
+  font-size: 0.85em;
+  color: var(--text-faint);
+}
+.llm-wiki-query-instructions-block[open] > summary::before {
+  content: '▾';
+}
+.llm-wiki-query-instructions-body {
+  padding: 0 12px 12px 12px;
+}
+.llm-wiki-query-instructions-desc {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin: 6px 0 8px 0;
+}
+.llm-wiki-query-instructions-textarea {
+  width: 100%;
+  resize: vertical;
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+.llm-wiki-query-instructions-counter {
+  font-size: 0.75em;
+  color: var(--text-faint);
+  text-align: right;
+  margin: 2px 0 6px 0;
+}
+.llm-wiki-query-instructions-button-row {
+  display: flex;
+  gap: 8px;
+}
+.llm-wiki-query-instructions-apply {
+  flex: 1 1 0;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.llm-wiki-query-instructions-apply:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.llm-wiki-query-instructions-apply:disabled {
+  background: var(--background-modifier-border);
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+.llm-wiki-query-instructions-apply:disabled:hover {
+  background: var(--background-modifier-border);
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+.llm-wiki-query-instructions-clear {
+  flex: 1 1 0;
+  background: var(--interactive-normal);
+  color: var(--text-muted);
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

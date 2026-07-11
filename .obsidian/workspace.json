@@ -26,6 +26,48 @@
               "icon": "globe",
               "title": "Metro LLM Wiki"
             }
+          },
+          {
+            "id": "0efa79cf97e7ab4f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-故障记录/17A02/2026-07-05 测试.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-07-05 测试"
+            }
+          },
+          {
+            "id": "afc570215b9660ed",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CLAUDE"
+            }
+          },
+          {
+            "id": "571fc565722da1b9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02-工作任务/2026-07-10 工作1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-07-10 工作1"
+            }
           }
         ],
         "currentTab": 1
@@ -165,6 +207,30 @@
               "icon": "bot",
               "title": "Claudian"
             }
+          },
+          {
+            "id": "2e01b1a9b4a0a095",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "5df47d59849fa204",
+            "type": "leaf",
+            "state": {
+              "type": "llm-wiki-query-view",
+              "state": {},
+              "icon": "message-circle",
+              "title": "Query Wiki - 对话式查询"
+            }
           }
         ],
         "currentTab": 4
@@ -175,6 +241,8 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "karpathywiki:摄入当前文件": false,
+      "karpathywiki:查询 Wiki": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -183,32 +251,28 @@
       "command-palette:打开命令面板": false,
       "bases:新建数据库": false,
       "metro-llm-wiki:Open metro dashboard": false,
-      "claudian:Open Claudian": false,
-      "templater-obsidian:Templater": false,
-      "tasknotes:Open mini calendar": false,
-      "tasknotes:Open advanced calendar": false,
-      "tasknotes:Open task list": false,
-      "tasknotes:Open agenda": false,
-      "tasknotes:Open kanban board": false,
-      "tasknotes:Open pomodoro": false,
-      "tasknotes:Open pomodoro stats": false,
-      "tasknotes:Create new task": false
+      "realclaudian:Open Claudian": false
     }
   },
-  "active": "d1dbc65d796228b5",
+  "active": "d782e650a0cb777e",
   "lastOpenFiles": [
+    "02-工作任务/2026-07-10 工作1.md",
+    "wiki/schema/config.md",
+    "wiki/schema",
+    "wiki/sources",
+    "wiki/concepts",
+    "wiki/entities",
+    "wiki/Welcome to Karpathy LLM Wiki.md",
+    "wiki",
+    "09-AI总结/wiki/health-report.md",
+    "03-故障记录/17A02/2026-07-05 测试.md",
+    "03-故障记录/17A02",
+    "CLAUDE.md",
+    "AGENTS.md",
     "README.md.tmp.18824.9476c4260d23",
     "tools/__pycache__/__init__.cpython-311.pyc",
     "tools/__pycache__/_utils.cpython-311.pyc",
     "tools/__pycache__/review.cpython-311.pyc",
-    "tools/__pycache__/health.cpython-311.pyc",
-    "tools/__pycache__",
-    "tools/__init__.py",
-    "tools/_utils.py",
-    "tools/review.py",
-    "tools/refresh.py",
-    "tools/query.py",
-    "CLAUDE.md",
     "06-模板/整改通知模板.md",
     "06-模板/故障记录模板.md",
     "06-模板/技术分析模板.md",
@@ -219,7 +283,6 @@
     "03-故障记录/17A03/2026-07-05 123.md",
     "03-故障记录/17A02/2026-07-05 17036#172161车TC2车近光灯不亮.md",
     "03-故障记录/17A01/2026-07-05 粗纤维.md",
-    "03-故障记录/17A02/2026-07-05 测试.md",
     "03-故障记录/17A02/2026-07-05 1231.md",
     "03-故障记录/17A02/2026-07-05 17032#PIS TC2司机广播控制主机故障.md",
     "03-故障记录/17A02/2026-06-04 17032#PIS TC2司机广播控制主机故障.md"

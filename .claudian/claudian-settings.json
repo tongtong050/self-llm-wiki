@@ -14,11 +14,13 @@
   "sharedEnvironmentVariables": "",
   "envSnippets": [],
   "customContextLimits": {},
+  "customModelAliases": {},
   "keyboardNavigation": {
     "scrollUpKey": "w",
     "scrollDownKey": "s",
     "focusInputKey": "i"
   },
+  "requireCommandOrControlEnterToSend": false,
   "locale": "zh-CN",
   "providerConfigs": {
     "claude": {
@@ -46,10 +48,10 @@
       "environmentHash": "",
       "installationMethodsByHost": {
         "device:17ee7b8d-e303-4cad-aa4a-25d0ef857269": "native-windows",
-        "device:f0598036-fe0c-4401-b98f-dd8211ab15a8": "native-windows",
-        "童童": "native-windows"
+        "device:f0598036-fe0c-4401-b98f-dd8211ab15a8": "native-windows"
       },
-      "wslDistroOverridesByHost": {}
+      "wslDistroOverridesByHost": {},
+      "visibleModels": null
     },
     "opencode": {
       "cliPath": "",
@@ -92,12 +94,10 @@
   },
   "lastCustomModel": "kimi-k2-turbo-preview",
   "maxTabs": 3,
-  "tabBarPosition": "input",
   "enableAutoScroll": true,
   "deferMathRenderingDuringStreaming": true,
+  "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
   "hiddenProviderCommands": {},
-  "customModelAliases": {},
-  "requireCommandOrControlEnterToSend": false,
-  "expandFileEditsByDefault": false
+  "tabBarPosition": "input"
 }
