@@ -8,3 +8,8 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# 07-系统 runtime artifacts (per-vault state, not source)
+07-系统/.collision-candidates.json
+07-系统/.embed-cache.json
+07-系统/.ingest-cache.json
