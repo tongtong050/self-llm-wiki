@@ -58,6 +58,19 @@ CONVERTIBLE_EXTENSIONS = {
 }
 ALL_SUPPORTED_EXTENSIONS = {".md"} | CONVERTIBLE_EXTENSIONS
 
+import re as _re
+
+# 文件名安全化：保留中文与常规字符，仅替换非法文件名字符与空白
+_ILLEGAL_NAME = _re.compile(r'[\\/:*?"<>|#^\[\]]')
+
+def safe_name(name: str) -> str:
+    """Sanitize a page/slug name for a filesystem while preserving CJK.
+    Replaces illegal filename chars and whitespace runs with '-'; trims; falls back to 'untitled'."""
+    s = _ILLEGAL_NAME.sub('-', str(name).strip())
+    s = _re.sub(r'\s+', '-', s)
+    s = s.strip('-')
+    return s or 'untitled'
+
 
 def clip(text: str, limit: int = 260) -> str:
     """Truncate text at word boundary instead of mid-word."""
@@ -366,15 +379,15 @@ Today's date: {today}
 Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 {{
   "title": "Human-readable title for this source",
-  "slug": "kebab-case-slug",
+  "slug": "文件名（用中文标题，保留中文；仅把空格和文件名非法字符 \\ / : * ? \" < > | # ^ [ ] 替换为连字符）",
   "source_page": "full markdown for wiki/sources/<slug>.md following the {template} template. CRITICAL: Aggressively convert people, works, tools, organizations, key concepts into [[Wikilinks]] inline.",
   "index_entry": "- [Title](sources/slug.md) — one-line Chinese summary",
   "overview_update": "full updated overview.md content, or null if no major change needed",
   "entity_pages": [
-    {{"path": "entities/EntityName.md", "content": "full markdown with frontmatter and [[wikilinks]]"}}
+    {{"path": "entities/实体中文名.md", "content": "full markdown with frontmatter and [[wikilinks]]"}}
   ],
   "concept_pages": [
-    {{"path": "concepts/ConceptName.md", "content": "full markdown with frontmatter and [[wikilinks]]"}}
+    {{"path": "concepts/概念中文名.md", "content": "full markdown with frontmatter and [[wikilinks]]"}}
   ],
   "contradictions": ["describe contradiction with existing wiki content, or empty list"],
   "reviews": [
@@ -403,6 +416,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
         return False
 
     slug = data.get("slug", source.stem)
+    slug = safe_name(slug)
     merge_count = 0
 
     # Write source page
@@ -410,7 +424,9 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 
     # Write entity pages (with conflict detection + merge)
     for page in data.get("entity_pages", []):
-        path = page["path"]
+        raw_path = page["path"]
+        _dir, _, _base = raw_path.rpartition("/")
+        path = (f"{_dir}/" if _dir else "") + safe_name(_base.removesuffix(".md")) + ".md"
         content = page["content"]
         if check_page_conflict(path):
             existing = read_file(WIKI_DIR / path)
@@ -426,7 +442,9 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 
     # Write concept pages (with conflict detection + merge)
     for page in data.get("concept_pages", []):
-        path = page["path"]
+        raw_path = page["path"]
+        _dir, _, _base = raw_path.rpartition("/")
+        path = (f"{_dir}/" if _dir else "") + safe_name(_base.removesuffix(".md")) + ".md"
         content = page["content"]
         if check_page_conflict(path):
             existing = read_file(WIKI_DIR / path)
