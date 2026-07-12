@@ -39,8 +39,8 @@ def _resolve_subdir(env_var: str, default_rel: str) -> Path:
         return Path(p)
     return REPO_ROOT / default_rel
 
-WIKI_DIR = _resolve_subdir("LLM_WIKI_WIKI_DIR", "wiki")
-GRAPH_DIR = _resolve_subdir("LLM_WIKI_GRAPH_DIR", "graph")
+WIKI_DIR = _resolve_subdir("LLM_WIKI_WIKI_DIR", "06-Wiki")
+GRAPH_DIR = _resolve_subdir("LLM_WIKI_GRAPH_DIR", "06-Wiki/graph")
 SCHEMA_FILE = REPO_ROOT / "CLAUDE.md"
 
 # 产出目录下的关键文件
@@ -49,11 +49,13 @@ LOG_FILE = WIKI_DIR / "log.md"
 OVERVIEW_FILE = WIKI_DIR / "overview.md"
 HOT_FILE = WIKI_DIR / "hot.md"
 
-# review.md 与 wiki 同级（如 09-AI总结/review.md）
-REVIEW_FILE = WIKI_DIR.parent / "review.md"
-
-# 缓存文件（.ingest-cache.json，以 . 开头被 Obsidian 隐藏）
-CACHE_FILE = WIKI_DIR.parent / ".ingest-cache.json"
+# review 与缓存放 07-系统（系统运行文件区）
+_SYS_DIR = REPO_ROOT / "07-系统"
+REVIEW_FILE = _SYS_DIR / "review.md"
+CACHE_FILE = _SYS_DIR / ".ingest-cache.json"
+PIPELINE_LOG_FILE = _SYS_DIR / "pipeline-log.md"
+COLLISION_FILE = _SYS_DIR / ".collision-candidates.json"
+EMBED_CACHE_FILE = _SYS_DIR / ".embed-cache.json"
 
 # Default metadata files to exclude from wiki page listings.
 _META_EXCLUDE = {"index.md", "log.md", "lint-report.md", "hot.md"}
@@ -64,16 +66,14 @@ _META_EXCLUDE = {"index.md", "log.md", "lint-report.md", "hot.md"}
 # 素材目录映射表
 # key: 目录名, value: (模板名, frontmatter type 值)
 _SOURCE_DIR_MAP: dict[str, tuple[str, str]] = {
-    "02-工作任务":     ("Task",      "task"),
-    "03-故障记录":     ("Fault",     "fault"),
-    "04-技术通知":     ("Notice",    "notice"),
-    "05-技术资料":     ("Technical Reference", "reference"),
-    "07-日常工作记录": ("Daily Work", "daily_work"),
-    "08-日常随记":     ("Journal",   "journal"),
+    "00-灵感库":    ("Inspiration", "inspiration"),
+    "01-项目":      ("Card",        "card"),
+    "02-长期关注":  ("Card",        "card"),
+    "03-参考资料":  ("Reference",   "reference"),
 }
 
 # 排除的目录名
-_EXCLUDE_DIR_NAMES = {"01-工作台", "06-模板", "09-AI总结", ".obsidian", ".claude", ".git"}
+_EXCLUDE_DIR_NAMES = {"04-归档", "05-Skills", "06-Wiki", "07-系统", "08-创作", ".obsidian", ".claude", ".git"}
 
 
 def get_source_dirs() -> list[Path]:
@@ -158,6 +158,7 @@ def call_llm(
     model_env: str = "LLM_MODEL",
     default_model: str = "claude-3-5-sonnet-latest",
     max_tokens: int = 4096,
+    temperature: float | None = None,
 ) -> str:
     """Call an LLM via litellm.
 
@@ -166,6 +167,7 @@ def call_llm(
         model_env: Environment variable name for model selection.
         default_model: Fallback model if env var is unset.
         max_tokens: Maximum response tokens.  0 or None to omit the limit.
+        temperature: Sampling temperature.  None to omit (litellm default).
     """
     try:
         from litellm import completion
@@ -181,6 +183,8 @@ def call_llm(
     }
     if max_tokens:
         kwargs["max_tokens"] = max_tokens
+    if temperature is not None:
+        kwargs["temperature"] = temperature
 
     response = completion(**kwargs)
     return response.choices[0].message.content
