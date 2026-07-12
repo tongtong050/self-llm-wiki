@@ -108,4 +108,60 @@
 
 **洞见回流约定**：用户在 review.md 勾选某洞见后，走 Review Confirmation Workflow —— 该洞见落成**新灵感**（type: inspiration, status: pending）写入 `00-灵感库/`，而非直接成卡片（让它重走消化通道）。
 
-<!-- 其余工作流见下（Task 3）-->
+## Query Workflow（强制，不可跳过）
+
+除纯闲聊外，每个查询按序执行：
+1. Read `06-Wiki/hot.md`。
+2. 意图分类：chitchat（直接回，跳过后续）/ fact_lookup（1-3 页）/ summary（overview+index+3-5 源）/ relationship（index+图谱扩展）/ deep_analysis（广搜+图谱+多轮）。
+3. Read `06-Wiki/index.md` 后再 Grep 补充（不可先 Grep）。
+4. 检索命中页，每页截断 3000 字；relationship/deep_analysis 用 `06-Wiki/graph/graph.json` 邻居扩展。
+5. 合成答案，`[[PageName]]` 引用，含 `## 来源`。
+6. 结束时主动问："需要把此回答保存到 `06-Wiki/syntheses/` 吗？（回复 /save 或 保存）"。若保存：写 `06-Wiki/syntheses/<slug>.md`、加入 index、更新 log/hot。
+
+## Review Confirmation Workflow
+
+触发：`action: review`、`/wiki-review`、或"确认 review"。
+1. Read `07-系统/review.md`。
+2. 找所有 `[x]` 勾选项。
+3. 逐项处理：
+   - `collision` 类型 → 把洞见落成**新灵感**（type: inspiration, status: pending）写 `00-灵感库/`。
+   - 其他类型（missing-page/duplicate/suggestion/uncertain）→ 按需创建/合并 wiki 页。
+   - 未勾选 → 跳过。
+4. 处理过的项移到 review.md 底部"## 已处理"。
+5. 更新 log.md、hot.md。
+
+## Graph Workflow
+
+触发：`action`（可选扩展）、`/wiki-graph`、"build the knowledge graph"。
+运行 `python tools/build_graph.py`（wikilink 提取 + 语义推理 + 通用类型亲缘权重 + Louvain 社区检测，产出 `06-Wiki/graph/graph.json` + `graph.html`）。加 `--insights` 生成洞察报告。
+
+## Health / Lint Workflow
+
+- Health：`python tools/health.py --save`（零 LLM，结构完整性检查）。
+- Lint：`python tools/lint.py --save`，读 `06-Wiki/lint-report.md` 汇报。
+
+## 通用模板
+
+- **Card**（type: card）：核心观点/论证/来源/关联（双链）。frontmatter: type, tags, source_ref, created。
+- **Inspiration**（type: inspiration）：念头/来源(外部输入/发散/解决问题)/初步概念。frontmatter: type, source, status, captured, tags。
+- **Reference**（type: reference）：摘要/要点/适用范围/关键实体。frontmatter: type, tags。
+- **General**（fallback, type: source, uncertain: true）：摘要/要点/关联。
+
+## 页面格式
+
+```yaml
+---
+title: "Page Title"
+type: source | entity | concept | synthesis | card | inspiration | reference
+tags: []
+sources: []
+related: []
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+---
+```
+用 `[[PageName]]` 双链。命名：entities/concepts = `TitleCase.md`，sources = `kebab-case.md`。
+
+## 模型与温度说明
+
+脚本层（litellm）支持模型/温度调度：`LLM_MODEL`（大）、`LLM_MODEL_FAST`（小/国产）、`LLM_EMBED_MODEL`（向量碰撞，可选）。抽取/预处理用低温，碰撞洞见生成用温度 0.7。留空 env 则用默认模型。Claudian 对话层用会话默认模型（不能 per-message 调温）。
