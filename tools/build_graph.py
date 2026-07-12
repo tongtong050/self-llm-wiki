@@ -587,17 +587,16 @@ COMMUNITY_COLORS = [
 # Five-Signal Edge Weight Calculation (zero token, algorithmic)
 # ═══════════════════════════════════════════════════════════════════════
 
-# Type affinity matrix (extended with domain-specific types)
+# 通用类型亲缘矩阵：同类/近类概念更易关联
 TYPE_AFFINITY = {
-    ("entity", "entity"): 0.5, ("concept", "concept"): 0.7,
-    ("fault", "fault"): 0.8, ("task", "task"): 0.4,
-    ("notice", "notice"): 0.6, ("reference", "reference"): 0.6,
-    ("fault", "entity"): 0.8, ("fault", "concept"): 0.6,
-    ("fault", "task"): 0.7, ("task", "entity"): 0.7,
-    ("task", "concept"): 0.5, ("entity", "concept"): 0.6,
-    ("notice", "entity"): 0.7, ("notice", "task"): 0.6,
-    ("reference", "entity"): 0.7, ("reference", "concept"): 0.6,
-    ("daily_work", "task"): 0.7, ("journal", "concept"): 0.5,
+    ("concept", "concept"): 1.0,
+    ("concept", "entity"): 0.6,
+    ("entity", "entity"): 0.8,
+    ("card", "concept"): 0.9,
+    ("card", "card"): 0.7,
+    ("source", "concept"): 0.5,
+    ("synthesis", "concept"): 0.9,
+    ("inspiration", "concept"): 0.7,
 }
 
 
