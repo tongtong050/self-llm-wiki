@@ -19,7 +19,7 @@ from datetime import date
 
 # Bootstrap shared utilities
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from tools._utils import REPO_ROOT, WIKI_DIR, RAW_DIR, GRAPH_DIR, read_file, sha256
+from tools._utils import REPO_ROOT, WIKI_DIR, GRAPH_DIR, get_source_dirs, read_file, sha256
 
 SOURCES_DIR = WIKI_DIR / "sources"
 REFRESH_CACHE = GRAPH_DIR / ".refresh_cache.json"
@@ -63,9 +63,13 @@ def find_stale_sources(force: bool = False) -> list[tuple[Path, Path]]:
 
         raw_path = REPO_ROOT / source_file
         if not raw_path.exists():
-            # Try relative to raw/
-            raw_path = RAW_DIR / source_file
-            if not raw_path.exists():
+            # Try relative to each configured source dir
+            raw_path = next(
+                (d / source_file for d in get_source_dirs()
+                 if (d / source_file).exists()),
+                None,
+            )
+            if raw_path is None:
                 continue
 
         raw_content = read_file(raw_path)
@@ -116,7 +120,11 @@ def main():
             sys.exit(1)
         raw_path = REPO_ROOT / source_file
         if not raw_path.exists():
-            raw_path = RAW_DIR / source_file
+            raw_path = next(
+                (d / source_file for d in get_source_dirs()
+                 if (d / source_file).exists()),
+                raw_path,
+            )
         if not raw_path.exists():
             print(f"Raw document not found: {source_file}")
             sys.exit(1)
