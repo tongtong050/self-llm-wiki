@@ -31,7 +31,7 @@ from tools._utils import (
 
 # ── Intent Classification ──────────────────────────────────────────────
 
-INTENT_CLASSIFY_PROMPT = """Classify the user's query about a metro vehicle maintenance knowledge base.
+INTENT_CLASSIFY_PROMPT = """Classify the user's query about a personal knowledge base (ideas, cards, concepts).
 
 Query: {question}
 
@@ -279,7 +279,7 @@ def query(question: str, save: bool = False, save_as: str | None = None,
     schema = read_file(SCHEMA_FILE)
     print(f"  synthesizing from {len(relevant_pages)} pages (+ {len(graph_expanded)} graph) ...")
 
-    prompt = f"""You are querying a metro vehicle maintenance knowledge base. Use the wiki pages below to synthesize a thorough answer in Chinese. Cite sources using [[PageName]] wikilink syntax.
+    prompt = f"""You are querying a personal knowledge base. Use the wiki pages below to synthesize a thorough answer in Chinese. Cite sources using [[PageName]] wikilink syntax.
 
 Schema:
 {schema}

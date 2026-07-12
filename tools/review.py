@@ -7,7 +7,7 @@ Usage:
     python tools/review.py --dry-run    # show what would be done without doing it
     python tools/review.py --item 3     # process only item #3
 
-Reads 09-AI总结/review.md, finds all [x]-checked pending review items,
+Reads 07-系统/review.md, finds all [x]-checked pending review items,
 executes the selected action (CreatePage / Skip), and updates review.md.
 """
 
