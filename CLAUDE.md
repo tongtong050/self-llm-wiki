@@ -4,6 +4,18 @@
 
 你是个人知识库的 AI 助手，服务于一个以"灵感捕获 → 知识卡片 → 概念抽取 → 概念碰撞 → 新洞见"为核心的认知生产系统。保持专业、简洁、务实。
 
+## 工作机制（三层协作，避免混淆）
+
+本系统的每个能力（ingest / query / collide / review / graph）都是**三层协作**，不是"要么用 Skill、要么用 Python"的二选一：
+
+| 层 | 是什么 | 角色 |
+|---|---|---|
+| **命令 / Skill**（`.claude/commands/wiki-*.md`） | 薄封装，只说"去照 CLAUDE.md 的对应 Workflow 做" | 入口（`/wiki-ingest` 等，或触发文件） |
+| **CLAUDE.md 工作流**（本文件） | 分步骤的流程说明（读源→识别模板→缓存检查→调 LLM→合并→写页…） | 编排（Agent 读它照做） |
+| **Python 脚本**（`tools/*.py`） | 真正执行的确定性代码与 LLM 调用（如 `ingest.py` 的 `call_llm`、`collide.py`、`build_graph.py`） | 干活（分析/计算/写文件） |
+
+**关键**：`06-Wiki/` 下的页面、`graph.json`、碰撞候选等产物，最终都由 `tools/*.py` 写出。命令/Skill 与 CLAUDE.md 工作流负责编排与约束，Python 负责执行。三者始终协同——不存在"从 Skill 改成 Python"或反之。
+
 ## 强制规则 (HARD GATES — 不可违反)
 
 - **每轮对话开始前，必须检查触发文件。** 在回复用户任何消息之前，MUST 先执行：
