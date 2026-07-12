@@ -250,41 +250,26 @@ def convert_to_md(source: Path) -> Path:
 def get_template_instruction(template_name: str, source_name, today: str) -> str:
     """Return template-specific instruction string for the ingest prompt."""
     templates = {
-        "Task": f"""Use the Task template. Source: {source_name}.
-Extract: task overview, execution steps, technical findings, involved parts/systems, conclusions.
-Frontmatter: type: task, task_type (检修任务|故障处理|技术分析|整改项目|会议培训|行政党建|其他|软件开发), train_number, train_type, status (todo|doing|done|postponed), date, tags.
-Entity priorities: train numbers, train types, part models, personnel involved.
-Concept priorities: procedures, technical methods, operational points.""",
+        "Card": f"""Use the Card template. Source: {source_name}.
+This is a knowledge card — a distilled idea with a core claim.
+Extract: core claim/thesis, supporting reasoning, key concepts, related entities, cross-links.
+Frontmatter: type: card, tags.
+Concept priorities: academic/theoretical concepts, methods, frameworks, mental models.
+Entity priorities: people, works, tools, organizations referenced.""",
 
-        "Fault": f"""Use the Fault template. Source: {source_name}.
-Extract: fault symptoms, root cause analysis, treatment measures, involved parts/systems, lessons learned.
-Frontmatter: type: fault, fault_system, fault_level (一般|严重|紧急), fault_date, train_number, train_type, tags.
-Entity priorities: failed parts, fault systems, train numbers, discoverer.
-Concept priorities: fault modes, failure mechanisms, treatment methods, prevention measures.""",
+        "Inspiration": f"""Use the Inspiration template. Source: {source_name}.
+This is a raw inspiration/idea captured by the user.
+Extract: the central idea, its source type (外部输入/发散/解决问题 if present), any nascent concepts worth tracking.
+Frontmatter: type: inspiration, tags.
+Concept priorities: emerging themes, questions, tentative concepts.
+Entity priorities: anything concrete the idea references.""",
 
-        "Notice": f"""Use the Notice template. Source: {source_name}.
-Extract: notice summary, technical requirements, affected scope, execution points.
-Frontmatter: type: notice, system, train_type, issue_date, deadline, tags.
-Entity priorities: affected parts, systems, train types.
-Concept priorities: technical changes, procedure updates.""",
-
-        "Technical Reference": f"""Use the Technical Reference template. Source: {source_name}.
-Extract: document overview, key technical content, applicable scope, key entities, cross-references.
-Frontmatter: type: reference, doc_type (手册|规程|图纸|标准|培训资料|其他), tags.
-Entity priorities: part models, system names, technical parameter codes.
-Concept priorities: operating procedures, standards, technical methods.""",
-
-        "Daily Work": f"""Use the Daily Work template. Source: {source_name}.
-Extract: work summary, technical points, problems encountered, related entities.
-Frontmatter: type: daily_work, date, tags.
-Entity priorities: collaborator names, involved parts/systems.
-Concept priorities: work methods, technical knowledge points.""",
-
-        "Journal": f"""Use the Journal template. Source: {source_name}.
-Extract: event summary, key decisions, reflections, knowledge connections.
-Frontmatter: type: journal, date, tags.
-Entity priorities: mentioned entities.
-Concept priorities: ideas, inspirations, reflection themes.""",
+        "Reference": f"""Use the Reference template. Source: {source_name}.
+This is external reference material (article, note, clipping).
+Extract: summary, key points, applicable scope, key entities, cross-references.
+Frontmatter: type: reference, tags.
+Concept priorities: academic concepts, definitions, key findings.
+Entity priorities: authors, sources, works, tools.""",
 
         "General": f"""Use the General template. Source: {source_name}.
 This source has no matching directory or frontmatter type — use General template as fallback.
@@ -350,7 +335,7 @@ def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
 
     template_instruction = get_template_instruction(template, rel_source, today)
 
-    prompt = f"""You are maintaining a metro vehicle maintenance knowledge base wiki. Process this source document using the specified domain template.
+    prompt = f"""You are maintaining a personal knowledge base wiki (ideas, cards, concepts). Process this source document using the specified template.
 
 ## Template to Use: {template}
 
@@ -370,8 +355,8 @@ def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
 ## Instructions
 
 1. Use the **{template}** template structure for the source page output.
-2. Extract entities (parts, systems, train models, personnel) → create entity pages with `[[wikilinks]]`.
-3. Extract concepts (fault modes, procedures, methods) → create concept pages with `[[wikilinks]]`.
+2. Extract entities (people, works, tools, organizations) → create entity pages with `[[wikilinks]]`.
+3. Extract concepts (ideas, methods, frameworks, themes) → create concept pages with `[[wikilinks]]`.
 4. If the wiki context shows existing pages that relate to this content, cross-reference them.
 5. Flag any contradictions with existing wiki content.
 6. For `missing-page` or `suggestion` review types, include 2-3 keyword search queries.
@@ -382,7 +367,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 {{
   "title": "Human-readable title for this source",
   "slug": "kebab-case-slug",
-  "source_page": "full markdown for wiki/sources/<slug>.md following the {template} template. CRITICAL: Aggressively convert parts, systems, train models, personnel, fault modes into [[Wikilinks]] inline.",
+  "source_page": "full markdown for wiki/sources/<slug>.md following the {template} template. CRITICAL: Aggressively convert people, works, tools, organizations, key concepts into [[Wikilinks]] inline.",
   "index_entry": "- [Title](sources/slug.md) — one-line Chinese summary",
   "overview_update": "full updated overview.md content, or null if no major change needed",
   "entity_pages": [
@@ -407,7 +392,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 """
 
     print(f"  calling API ...")
-    raw = call_llm(prompt, max_tokens=8192)
+    raw = call_llm(prompt, max_tokens=8192, temperature=0.2)
     try:
         data = parse_json_from_response(raw)
     except (ValueError, json.JSONDecodeError) as e:
