@@ -68,6 +68,7 @@ def safe_name(name: str) -> str:
     Replaces illegal filename chars and whitespace runs with '-'; trims; falls back to 'untitled'."""
     s = _ILLEGAL_NAME.sub('-', str(name).strip())
     s = _re.sub(r'\s+', '-', s)
+    s = _re.sub(r'-{2,}', '-', s)
     s = s.strip('-')
     return s or 'untitled'
 
