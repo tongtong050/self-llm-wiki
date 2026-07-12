@@ -1,0 +1,11 @@
+{
+  "directoriesInitialized": true,
+  "llmModel": "",
+  "llmModelFast": "",
+  "llmEmbedModel": "",
+  "collisionMin": 0.6,
+  "collisionMax": 0.75,
+  "enableVectorCollision": false,
+  "archiveDays": 30,
+  "rssFeeds": ""
+}

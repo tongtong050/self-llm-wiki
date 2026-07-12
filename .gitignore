@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Superpowers SDD scratch
+.superpowers
+
+# OS
+.DS_Store
