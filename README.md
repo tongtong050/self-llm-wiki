@@ -1,6 +1,6 @@
-# Metro LLM Wiki — Obsidian Plugin
+# 认知生产台（Cognition Hub）— 个人知识库 Vault
 
-地铁车辆数字化工作台，集成 LLM Wiki 知识库管理。支持工作任务、故障报单、技术通知的全生命周期管理，日历热力图数据汇总，以及 ingest 触发的知识图谱构建。
+通用个人知识库 vault，配合 cognition-hub Obsidian 插件与 Claude Code Agent 工作流，构成完整的认知生产管线。
 
 ## Features
 
