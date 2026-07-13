@@ -177,3 +177,13 @@ last_updated: YYYY-MM-DD
 ## 模型与温度说明
 
 脚本层（litellm）支持模型/温度调度：`LLM_MODEL`（大）、`LLM_MODEL_FAST`（小/国产）、`LLM_EMBED_MODEL`（向量碰撞，可选）。抽取/预处理用低温，碰撞洞见生成用温度 0.7。留空 env 则用默认模型。Claudian 对话层用会话默认模型（不能 per-message 调温）。
+
+## Douyin Workflow（口播脚本生成）
+
+触发：`action: douyin` 的触发文件、`/wiki-douyin <path>`、或用户直接请求。
+
+1. 若触发文件或命令指定了 source 路径，Read 该文件。否则询问用户要基于哪条灵感/卡片/洞见制作口播脚本。
+2. Invoke `douyin-script` skill，传入源文件内容。
+3. 按 Skill 指导生成口播脚本 + 可选文案，写入 `08-创作/<slug>.md`。
+4. 向用户展示生成结果，询问是否调整（修改语调、长度、加/减表演指导）。
+5. 删除触发文件（若存在）。
