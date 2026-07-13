@@ -36,6 +36,7 @@
 | `ingest` | `source`（卡片路径） | Ingest Workflow |
 | `review` | （无） | Review Confirmation Workflow |
 | `collide` | （无） | Collide Workflow |
+| `douyin` | （无，或 source 可选） | Douyin Workflow |
 
 处理后删除触发文件；失败则保留触发文件供重试，并向用户报告错误。
 
