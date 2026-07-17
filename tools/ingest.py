@@ -121,7 +121,9 @@ def update_index(new_entry: str, section: str = "Sources"):
     lines = content.split("\n")
     found = False
     for i, line in enumerate(lines):
-        if line.startswith(section_prefix):
+        # 匹配 "## Sources" 或 "## Sources 来源 (3)"
+        stripped = line.strip()
+        if stripped == section_prefix or stripped.startswith(section_prefix + " "):
             # Insert new_entry after the section header line
             indent = ""
             # Look at the first existing entry under this section for indentation
