@@ -64,7 +64,7 @@ def classify_intent(question: str) -> dict:
         index_excerpt=index_excerpt,
     )
 
-    raw = call_llm(prompt, "LLM_MODEL_FAST", "claude-3-5-haiku-latest", max_tokens=256)
+    raw = call_llm(prompt, "LLM_MODEL_FAST", "anthropic/claude-3-5-haiku-latest", max_tokens=256)
     raw = re.sub(r"^```(?:json)?\s*", "", raw.strip())
     raw = re.sub(r"\s*```$", "", raw)
 
@@ -157,7 +157,7 @@ def llm_select_pages(question: str, index_content: str) -> list[Path]:
         f"Which pages are most relevant to answering: \"{question}\"\n\n"
         f"Return ONLY a JSON array of relative file paths, e.g. [\"sources/foo.md\", \"concepts/Bar.md\"]. Maximum 10 pages."
     )
-    raw = call_llm(prompt, "LLM_MODEL_FAST", "claude-3-5-haiku-latest", max_tokens=512)
+    raw = call_llm(prompt, "LLM_MODEL_FAST", "anthropic/claude-3-5-haiku-latest", max_tokens=512)
     raw = re.sub(r"^```(?:json)?\s*", "", raw.strip())
     raw = re.sub(r"\s*```$", "", raw)
     try:
@@ -292,7 +292,7 @@ Question: {question}
 Write a well-structured markdown answer with headers, bullets, and [[wikilink]] citations. At the end, add a ## 来源 section listing the pages you drew from.
 """
 
-    answer = call_llm(prompt, "LLM_MODEL", "claude-3-5-sonnet-latest", max_tokens=4096)
+    answer = call_llm(prompt, "LLM_MODEL", "anthropic/claude-3-5-sonnet-latest", max_tokens=4096)
     print("\n" + "=" * 60)
     print(answer)
     print("=" * 60)

@@ -148,7 +148,11 @@ def write_file(path: Path, content: str):
     """Write UTF-8 content to file, creating parent directories as needed."""
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
-    print(f"  wrote: {path.relative_to(REPO_ROOT)}")
+    try:
+        rel = path.relative_to(REPO_ROOT)
+    except ValueError:
+        rel = path
+    print(f"  wrote: {rel}")
 
 
 # ── LLM ────────────────────────────────────────────────────────────────
@@ -156,7 +160,7 @@ def write_file(path: Path, content: str):
 def call_llm(
     prompt: str,
     model_env: str = "LLM_MODEL",
-    default_model: str = "claude-3-5-sonnet-latest",
+    default_model: str = "anthropic/claude-3-5-sonnet-latest",
     max_tokens: int = 4096,
     temperature: float | None = None,
 ) -> str:
@@ -466,8 +470,8 @@ MERGE_PROMPT_TEMPLATE = """You are merging two versions of the same wiki page. B
 3. **Mark conflicts** — When claims are contradictory, keep BOTH and wrap in:
    ```
    > [!conflict] 以下来源对同一主题的描述不一致
-   > - 来源 A: {claim_a}
-   > - 来源 B: {claim_b}
+   > - 来源 A: {{claim_a}}
+   > - 来源 B: {{claim_b}}
    ```
    Never silently choose one side.
 4. **Reorganize** — Restructure sections logically. Do not just concatenate.

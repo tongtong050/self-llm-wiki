@@ -295,7 +295,7 @@ Return a markdown lint report with these sections:
 
 Be specific — name the exact pages and claims involved.
 """
-    semantic_report = call_llm(prompt, "LLM_MODEL", "claude-3-5-sonnet-latest", max_tokens=3000)
+    semantic_report = call_llm(prompt, "LLM_MODEL", "anthropic/claude-3-5-sonnet-latest", max_tokens=3000)
 
     # Compose full report
     report_lines = [

@@ -269,7 +269,7 @@ Rules:
         page_edges = []
         valid_rels = []
         try:
-            raw = call_llm(prompt, "LLM_MODEL_FAST", "claude-3-5-haiku-latest", max_tokens=1024)
+            raw = call_llm(prompt, "LLM_MODEL_FAST", "anthropic/claude-3-5-haiku-latest", max_tokens=1024)
             raw = raw.strip()
 
             match = re.search(r"(\{[\s\S]*\}|\[[\s\S]*\])", raw)
@@ -885,7 +885,7 @@ def generate_insights_report(nodes: list[dict], edges: list[dict],
         sparse_communities=sparse_str,
     )
 
-    report = call_llm(prompt, "LLM_MODEL_FAST", "claude-3-5-haiku-latest", max_tokens=3000)
+    report = call_llm(prompt, "LLM_MODEL_FAST", "anthropic/claude-3-5-haiku-latest", max_tokens=3000)
     return report
 
 
