@@ -373,7 +373,7 @@ Be specific — name the exact pages and claims involved.
         if fragile_bridges:
             report_lines.append("These community connections rely on a single edge — one broken link isolates them:")
             for fb in fragile_bridges:
-                report_lines.append(f"- Community {fb['comm_a']} ↔ Community {fb['comm_b']} via `{fb['bridge_from']}` → `{fb['bridge_to']}`")
+                report_lines.append(f"- Community {fb['comm_a']} <-> Community {fb['comm_b']} via `{fb['bridge_from']}` -> `{fb['bridge_to']}`")
         else:
             report_lines.append("No fragile bridges — all community connections have redundant links.")
         report_lines.append("")

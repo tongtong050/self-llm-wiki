@@ -203,7 +203,7 @@ def save_synthesis(question: str, answer: str) -> str:
 
 def query(question: str, save: bool = False, save_as: str | None = None,
           skip_classify: bool = False):
-    """Execute the full query pipeline: classify → retrieve → synthesize → optionally save."""
+    """Execute the full query pipeline: classify -> retrieve -> synthesize -> optionally save."""
     today = date.today().isoformat()
 
     # Step 0: Read hot.md for context

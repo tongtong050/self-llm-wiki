@@ -25,6 +25,11 @@ The LLM reads the source, extracts knowledge, and updates the wiki:
 """
 
 import sys
+import io
+# Force UTF-8 for stdout/stderr to handle Unicode (emoji, CJK) on Windows
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+
 import json
 import re
 import shutil
@@ -112,11 +117,25 @@ def update_index(new_entry: str, section: str = "Sources"):
     content = read_file(INDEX_FILE)
     if not content:
         content = "# Wiki Index\n\n## Overview\n- [Overview](overview.md) — living synthesis\n\n## Sources\n\n## Entities\n\n## Concepts\n\n## Syntheses\n"
-    section_header = f"## {section}"
-    if section_header in content:
-        content = content.replace(section_header + "\n", section_header + "\n" + new_entry + "\n")
+    section_prefix = f"## {section}"
+    lines = content.split("\n")
+    found = False
+    for i, line in enumerate(lines):
+        if line.startswith(section_prefix):
+            # Insert new_entry after the section header line
+            indent = ""
+            # Look at the first existing entry under this section for indentation
+            for j in range(i + 1, len(lines)):
+                if lines[j].strip().startswith("-") or lines[j].strip().startswith("["):
+                    indent = lines[j][:len(lines[j]) - len(lines[j].lstrip())]
+                    break
+            lines.insert(i + 1, indent + new_entry)
+            found = True
+            break
+    if not found:
+        content += f"\n{section_prefix}\n- {new_entry}\n"
     else:
-        content += f"\n{section_header}\n{new_entry}\n"
+        content = "\n".join(lines)
     safe_write(INDEX_FILE, content)
 
 
@@ -144,7 +163,7 @@ def append_reviews(reviews: list[dict], source: Path):
         search_qs = r.get("search_queries", [])
 
         entry = f"## [ ] {rtype} | {title}\n\n"
-        entry += f"- **状态**: ⏳ 待处理\n"
+        entry += f"- **状态**: [...] 待处理\n"
         entry += f"- **来源**: {source_name}\n"
         entry += f"- **描述**: {desc}\n"
         if related:
@@ -257,7 +276,7 @@ def convert_to_md(source: Path) -> Path:
         tmp.write_text(result.text_content, encoding="utf-8")
         output = tmp
 
-    print(f"  ✓ Converted {source.name} → {output.name}")
+    print(f"  [OK] Converted {source.name} -> {output.name}")
     return output
 
 
@@ -297,7 +316,7 @@ Mark as uncertain in review output.""",
 def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
     """Ingest a single source document into the wiki.
 
-    Steps: read → identify template → check cache → LLM generate → check conflicts → write → review → hot.md → mark source
+    Steps: read -> identify template -> check cache -> LLM generate -> check conflicts -> write -> review -> hot.md -> mark source
     """
     source = Path(source_path)
     if not source.exists():
@@ -306,7 +325,7 @@ def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
 
     # Skip excluded directories
     if should_exclude(source):
-        print(f"  ⚠️  Skipping excluded path: {source}")
+        print(f"  [!]  Skipping excluded path: {source}")
         return False
 
     # Auto-convert non-markdown files
@@ -316,7 +335,7 @@ def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
             print(f"  Skipping non-.md file (--no-convert): {source.name}")
             return False
         if source.suffix.lower() not in CONVERTIBLE_EXTENSIONS:
-            print(f"  ⚠️  Unsupported format: {source.suffix} — skipping {source.name}")
+            print(f"  [!]  Unsupported format: {source.suffix} — skipping {source.name}")
             return False
         print(f"  Converting {source.name} to markdown...")
         converted_path = convert_to_md(source)
@@ -332,7 +351,7 @@ def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
 
     # Cache check
     if not force and not is_source_changed(source_path, source_content):
-        print(f"  ✓ Skipping (unchanged): {source.name}")
+        print(f"  * Skipping (unchanged): {source.name}")
         return True
 
     print(f"\nIngesting: {source.name}")
@@ -369,8 +388,8 @@ def ingest(source_path: str, auto_convert: bool = True, force: bool = False):
 ## Instructions
 
 1. Use the **{template}** template structure for the source page output.
-2. Extract entities (people, works, tools, organizations) → create entity pages with `[[wikilinks]]`.
-3. Extract concepts (ideas, methods, frameworks, themes) → create concept pages with `[[wikilinks]]`.
+2. Extract entities (people, works, tools, organizations) -> create entity pages with `[[wikilinks]]`.
+3. Extract concepts (ideas, methods, frameworks, themes) -> create concept pages with `[[wikilinks]]`.
 4. If the wiki context shows existing pages that relate to this content, cross-reference them.
 5. Flag any contradictions with existing wiki content.
 6. For `missing-page` or `suggestion` review types, include 2-3 keyword search queries.
@@ -406,7 +425,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 """
 
     print(f"  calling API ...")
-    raw = call_llm(prompt, max_tokens=8192, temperature=0.2)
+    raw = call_llm(prompt, max_tokens=16384, temperature=0.2)
     try:
         data = parse_json_from_response(raw)
     except (ValueError, json.JSONDecodeError) as e:
@@ -432,9 +451,9 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
         if check_page_conflict(path):
             existing = read_file(WIKI_DIR / path)
             if should_skip_merge(existing, content):
-                print(f"  → skipped merge (near-identical): {path}")
+                print(f"  -> skipped merge (near-identical): {path}")
                 continue
-            print(f"  → merging: {path}")
+            print(f"  -> merging: {path}")
             merged = merge_pages(existing, content, path, str(rel_source))
             write_page_safe(path, merged)
             merge_count += 1
@@ -450,9 +469,9 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
         if check_page_conflict(path):
             existing = read_file(WIKI_DIR / path)
             if should_skip_merge(existing, content):
-                print(f"  → skipped merge (near-identical): {path}")
+                print(f"  -> skipped merge (near-identical): {path}")
                 continue
-            print(f"  → merging: {path}")
+            print(f"  -> merging: {path}")
             merged = merge_pages(existing, content, path, str(rel_source))
             write_page_safe(path, merged)
             merge_count += 1
@@ -465,7 +484,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
 
     # Update index
     for entry in [data["index_entry"]]:
-        update_index_entry(entry, section="Sources")
+        update_index(entry, section="Sources")
 
     # Append log
     append_log(data.get("log_entry", f"## [{today}] ingest | {data.get('title', 'Unknown')}"))
@@ -473,7 +492,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
     # Report contradictions
     contradictions = data.get("contradictions", [])
     if contradictions:
-        print("\n  ⚠️  Contradictions detected:")
+        print("  [WARN] Contradictions detected:")
         for c in contradictions:
             print(f"     - {c}")
 
@@ -523,7 +542,7 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
     validation = validate_ingest(created_pages)
 
     print(f"\n{'='*50}")
-    print(f"  ✅ Ingested: {data.get('title', 'Unknown')}")
+    print(f"  [OK] Ingested: {data.get('title', 'Unknown')}")
     print(f"{'='*50}")
     print(f"  Template: {template}")
     print(f"  Created : {len(created_pages)} pages")
@@ -537,15 +556,15 @@ Return ONLY a valid JSON object (no markdown fences, no prose outside the JSON):
     if contradictions:
         print(f"  Warnings: {len(contradictions)} contradiction(s)")
     if reviews:
-        print(f"  Reviews : {len(reviews)} review item(s) → review.md")
+        print(f"  Reviews : {len(reviews)} review item(s) -> review.md")
     if validation["broken_links"]:
-        print(f"  ⚠️  Broken links: {len(validation['broken_links'])}")
+        print(f"  [!]  Broken links: {len(validation['broken_links'])}")
         for page, link in validation["broken_links"][:5]:
-            print(f"           {page} → [[{link}]]")
+            print(f"           {page} -> [[{link}]]")
     if validation["unindexed"]:
-        print(f"  ⚠️  Not in index: {len(validation['unindexed'])}")
+        print(f"  [!]  Not in index: {len(validation['unindexed'])}")
     if not validation["broken_links"] and not validation["unindexed"]:
-        print("  ✓ Validation passed")
+        print("  * Validation passed")
     print()
     return True
 
@@ -558,7 +577,7 @@ if __name__ == "__main__":
         if result["broken_links"]:
             print(f"Broken wikilinks: {len(result['broken_links'])}")
             for page, link in result["broken_links"][:20]:
-                print(f"  wiki/{page} → [[{link}]]")
+                print(f"  wiki/{page} -> [[{link}]]")
             if len(result["broken_links"]) > 20:
                 print(f"  ... and {len(result['broken_links']) - 20} more")
         else:
@@ -601,7 +620,7 @@ if __name__ == "__main__":
             if ext in ALL_SUPPORTED_EXTENSIONS:
                 paths_to_process.append(p)
             else:
-                print(f"  ⚠️  Skipping unsupported format: {p.name} ({ext})")
+                print(f"  [!]  Skipping unsupported format: {p.name} ({ext})")
         elif p.is_dir():
             for f in p.rglob("*"):
                 if f.is_file() and f.suffix.lower() in ALL_SUPPORTED_EXTENSIONS:

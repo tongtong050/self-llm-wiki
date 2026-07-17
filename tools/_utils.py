@@ -21,7 +21,7 @@ def _resolve_root() -> Path:
     if env:
         p = Path(env)
         if not p.is_absolute():
-            # Relative path → resolve against script location's parent
+            # Relative path -> resolve against script location's parent
             script_parent = Path(__file__).resolve().parent.parent
             p = (script_parent / p).resolve()
         return p
@@ -106,9 +106,9 @@ def identify_template(file_path: str | Path,
     """Identify which Domain template to use for a source file.
 
     Priority:
-      1. frontmatter 'type' field → direct map
-      2. parent directory name → directory map
-      3. fallback → "General"
+      1. frontmatter 'type' field -> direct map
+      2. parent directory name -> directory map
+      3. fallback -> "General"
     """
     path = Path(file_path)
 
@@ -385,10 +385,10 @@ def release_lock(file_path: str | Path):
 
 
 def safe_write(file_path: str | Path, content: str, timeout: int = 60) -> bool:
-    """Lock → write → unlock. Returns False if lock acquisition failed."""
+    """Lock -> write -> unlock. Returns False if lock acquisition failed."""
     p = Path(file_path)
     if not acquire_lock(p, timeout=timeout):
-        print(f"  ⚠️  Lock timeout: {p}")
+        print(f"  [!]  Lock timeout: {p}")
         return False
     try:
         write_file(p, content)

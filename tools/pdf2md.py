@@ -6,15 +6,15 @@ Usage:
     python tools/pdf2md.py <input> [--output raw/papers/output.md] [--backend auto]
 
 Inputs:
-    arXiv ID      →  2401.12345
-    arXiv URL     →  https://arxiv.org/abs/2401.12345
-    Local PDF     →  /path/to/paper.pdf
+    arXiv ID      ->  2401.12345
+    arXiv URL     ->  https://arxiv.org/abs/2401.12345
+    Local PDF     ->  /path/to/paper.pdf
 
 Backends:
-    auto          →  arXiv inputs use arxiv2md; PDFs use marker (fallback: pymupdf4llm)
-    arxiv2md      →  Best for arXiv papers (uses structured source, not PDF)
-    marker        →  Best for complex multi-column academic PDFs
-    pymupdf4llm   →  Fast, lightweight, no GPU — good for native-text PDFs
+    auto          ->  arXiv inputs use arxiv2md; PDFs use marker (fallback: pymupdf4llm)
+    arxiv2md      ->  Best for arXiv papers (uses structured source, not PDF)
+    marker        ->  Best for complex multi-column academic PDFs
+    pymupdf4llm   ->  Fast, lightweight, no GPU — good for native-text PDFs
 
 Examples:
     python tools/pdf2md.py 2401.12345
@@ -81,7 +81,7 @@ def convert_arxiv(arxiv_id: str, output: Path) -> Path:
         print(f"Error: arxiv2md failed:\n{result.stderr}")
         sys.exit(1)
 
-    print(f"  ✓ Converted arXiv {arxiv_id} → {output.relative_to(REPO_ROOT)}")
+    print(f"  * Converted arXiv {arxiv_id} -> {output.relative_to(REPO_ROOT)}")
     return output
 
 
@@ -116,7 +116,7 @@ def convert_marker(pdf_path: Path, output: Path) -> Path:
     import shutil
     shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    print(f"  ✓ Converted {pdf_path.name} → {output.relative_to(REPO_ROOT)}")
+    print(f"  * Converted {pdf_path.name} -> {output.relative_to(REPO_ROOT)}")
     return output
 
 
@@ -135,7 +135,7 @@ def convert_pymupdf(pdf_path: Path, output: Path) -> Path:
     md_text = pymupdf4llm.to_markdown(str(pdf_path))
     output.write_text(md_text, encoding="utf-8")
 
-    print(f"  ✓ Converted {pdf_path.name} → {output.relative_to(REPO_ROOT)}")
+    print(f"  * Converted {pdf_path.name} -> {output.relative_to(REPO_ROOT)}")
     return output
 
 

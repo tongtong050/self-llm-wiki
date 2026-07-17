@@ -219,7 +219,7 @@ def format_report(results: dict) -> str:
             emoji = "🔴" if ef["status"] == "empty" else "🟡"
             lines.append(f"| `{ef['path']}` | {ef['total_bytes']} | {ef['body_bytes']} | {emoji} {ef['status']} |")
     else:
-        lines.append("All pages have content beyond frontmatter. ✅")
+        lines.append("All pages have content beyond frontmatter. [OK]")
     lines.append("")
 
     # ── Index Sync
@@ -243,7 +243,7 @@ def format_report(results: dict) -> str:
         lines.append("")
 
     if not stale and not missing:
-        lines.append("index.md is in sync with disk. ✅")
+        lines.append("index.md is in sync with disk. [OK]")
         lines.append("")
 
     # ── Log Coverage
@@ -256,7 +256,7 @@ def format_report(results: dict) -> str:
         for lm in log_missing:
             lines.append(f"- `{lm['path']}` — {lm['title']}")
     else:
-        lines.append("All source pages have corresponding log entries. ✅")
+        lines.append("All source pages have corresponding log entries. [OK]")
     lines.append("")
 
     return "\n".join(lines)

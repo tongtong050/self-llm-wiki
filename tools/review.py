@@ -101,7 +101,7 @@ def create_page_from_review(item: dict) -> bool:
     full_path = WIKI_DIR / page_path
 
     if full_path.exists():
-        print(f"  ⚠️  Page already exists: {page_path}")
+        print(f"  [!]  Page already exists: {page_path}")
         return False
 
     prompt = f"""Create a wiki page based on this review item.
@@ -126,7 +126,7 @@ Return ONLY the complete page (frontmatter + body), starting with ---."""
         raw = f"---\ntitle: \"{item['title']}\"\ntype: {page_type}\ntags: []\ncreated: {today}\nlast_updated: {today}\n---\n\n# {item['title']}\n\n{raw}"
 
     safe_write(full_path, raw)
-    print(f"  ✅ Created: {page_path}")
+    print(f"  [OK] Created: {page_path}")
     return True
 
 
@@ -146,7 +146,7 @@ def update_review_file(items: list[dict], dry_run: bool = False):
             continue
 
         action = item.get("selected_option", "Skip")
-        done_entry = f"### {item['type']} | {item['title']} — {'✅ 已创建页面' if action == 'CreatePage' else '⏭️ 已跳过'} — {today}\n"
+        done_entry = f"### {item['type']} | {item['title']} — {'[OK] 已创建页面' if action == 'CreatePage' else '[SKIP] 已跳过'} — {today}\n"
 
         # Remove the pending item
         pattern = rf'## \[x\] {re.escape(item["type"])} \| {re.escape(item["title"])}.*?(?=\n## |$)'
@@ -208,7 +208,7 @@ def main():
                 created += 1
         else:
             skipped += 1
-            print(f"      ⏭️  Skipped")
+            print(f"      [SKIP]  Skipped")
 
     if not dry_run:
         update_review_file(items, dry_run=False)

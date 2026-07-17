@@ -48,7 +48,7 @@ GRAPH_HTML = GRAPH_DIR / "graph.html"
 CACHE_FILE = GRAPH_DIR / ".cache.json"
 INFERRED_EDGES_FILE = GRAPH_DIR / ".inferred_edges.jsonl"
 
-# Node type → color mapping
+# Node type -> color mapping
 TYPE_COLORS = {
     "source": "#4CAF50",
     "entity": "#2196F3",
@@ -226,7 +226,7 @@ def build_inferred_edges(pages: list[Path], existing_edges: list[dict], cache: d
     # Build a summary of existing nodes for context
     node_list = "\n".join(f"- {page_id(p)} ({extract_frontmatter_type(read_file(p))})" for p in pages)
     existing_edge_summary = "\n".join(
-        f"- {e['from']} → {e['to']} (EXTRACTED)" for e in existing_edges[:30]
+        f"- {e['from']} -> {e['to']} (EXTRACTED)" for e in existing_edges[:30]
     )
 
     for i, p in enumerate(changed_pages, 1):
@@ -262,7 +262,7 @@ ANY CONVERSATIONAL PREAMBLE WILL CAUSE A SYSTEM CRASH.
 
 Rules:
 - Only include pages from the available list above
-- Confidence >= 0.7 → INFERRED, < 0.7 → AMBIGUOUS
+- Confidence >= 0.7 -> INFERRED, < 0.7 -> AMBIGUOUS
 - Do not repeat edges already in the extracted list
 - Return {{"edges": []}} if no new relationships found
 """
@@ -431,9 +431,9 @@ def generate_report(nodes: list[dict], edges: list[dict], communities: dict[str,
 
     # Health rating
     if edges_per_node >= 2.0:
-        health = "✅ healthy"
+        health = "[OK] healthy"
     elif edges_per_node >= 1.0:
-        health = "⚠️ warning"
+        health = "[!] warning"
     else:
         health = "🔴 critical"
 
@@ -515,7 +515,7 @@ def generate_report(nodes: list[dict], edges: list[dict], communities: dict[str,
     if fragile_bridges:
         lines.append("Community pairs connected by only 1 edge — one deleted link breaks them:")
         for (ca, cb), edge in fragile_bridges:
-            lines.append(f"- Community {ca} ↔ Community {cb} via `{edge['from']}` → `{edge['to']}`")
+            lines.append(f"- Community {ca} <-> Community {cb} via `{edge['from']}` -> `{edge['to']}`")
     else:
         lines.append("No fragile bridges — all community connections are redundant.")
     lines.append("")
@@ -765,7 +765,7 @@ def find_structural_insights(nodes: list[dict], edges: list[dict],
                 "source": src,
                 "target": tgt,
                 "weight": e.get("weight", 0),
-                "communities": f"{c_src}↔{c_tgt}",
+                "communities": f"{c_src}<->{c_tgt}",
                 "type": e.get("type", "unknown"),
             })
 
@@ -863,7 +863,7 @@ def generate_insights_report(nodes: list[dict], edges: list[dict],
 
     # Format cross-community edges
     cross_str = "\n".join(
-        f"- {e['source']} ↔ {e['target']} (社区 {e['communities']}, 权重 {e.get('weight', 0):.2f})"
+        f"- {e['source']} <-> {e['target']} (社区 {e['communities']}, 权重 {e.get('weight', 0):.2f})"
         for e in structural["cross_community_edges"][:15]
     ) if structural["cross_community_edges"] else "(无)"
 
@@ -1470,21 +1470,21 @@ def build_graph(infer: bool = True, open_browser: bool = False, clean: bool = Fa
     print("  Pass 1: extracting wikilinks...")
     nodes = build_nodes(pages)
     edges = build_extracted_edges(pages)
-    print(f"  → {len(edges)} extracted edges")
+    print(f"  -> {len(edges)} extracted edges")
 
     # Pass 2: inferred edges
     if infer:
         print("  Pass 2: inferring semantic relationships...")
         inferred = build_inferred_edges(pages, edges, cache, resume=not clean)
         edges.extend(inferred)
-        print(f"  → {len(inferred)} inferred edges")
+        print(f"  -> {len(inferred)} inferred edges")
         save_cache(cache)
 
     # Deduplicate edges
     before_dedup = len(edges)
     edges = deduplicate_edges(edges)
     if before_dedup != len(edges):
-        print(f"  dedup: {before_dedup} → {len(edges)} edges")
+        print(f"  dedup: {before_dedup} -> {len(edges)} edges")
 
     # Community detection
     print("  Running Louvain community detection...")
@@ -1506,7 +1506,7 @@ def build_graph(infer: bool = True, open_browser: bool = False, clean: bool = Fa
     # Pass 3: Calculate five-signal composite edge weights (zero token)
     print("  Pass 3: calculating edge weights ...")
     edges = calculate_edge_weights(nodes, edges)
-    print(f"  → weights computed for {len(edges)} edges")
+    print(f"  -> weights computed for {len(edges)} edges")
 
     # Save graph.json
     graph_data = {"nodes": nodes, "edges": edges, "built": today}

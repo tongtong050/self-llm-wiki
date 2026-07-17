@@ -138,7 +138,7 @@ def main():
 
     print(f"Found {len(stale)} stale source page(s):")
     for wiki_page, raw_path in stale:
-        print(f"  • {wiki_page.name} ← {raw_path.relative_to(REPO_ROOT)}")
+        print(f"  • {wiki_page.name} <- {raw_path.relative_to(REPO_ROOT)}")
 
     if args.dry_run:
         print("\n[DRY RUN] No changes made.")
