@@ -310,43 +310,69 @@ def update_ingest_cache(source_path: str | Path, content: str):
 # ── hot.md ─────────────────────────────────────────────────────────────
 
 def update_hot_md(operation: str, details: dict | None = None):
-    """Update wiki/hot.md session context cache. Keep under ~500 words."""
+    """Append a new operation entry to wiki/hot.md. Preserves all existing content."""
     from datetime import datetime
 
     details = details or {}
-    now = datetime.now().isoformat(timespec="minutes")
+    now = datetime.now()
+    today = now.strftime("%Y-%m-%d")
 
-    # Build new entry
-    entries = [f"## Recent Operations\n- `{operation}` {now}"]
-    if details.get("source"):
-        entries.append(f"- Source: {details['source']}")
-    if details.get("entities"):
-        entities_str = ", ".join(f"[[{e}]]" for e in details["entities"][:5])
-        entries.append(f"- Entities: {entities_str}")
-    if details.get("concepts"):
-        concepts_str = ", ".join(f"[[{c}]]" for c in details["concepts"][:5])
-        entries.append(f"- Concepts: {concepts_str}")
+    # Build a human-readable entry block
+    entry_lines = []
+    source_name = (details.get("source") or "").replace(".md", "")
+    if operation == "ingest" and source_name:
+        entry_lines.append(f"## 今天：Ingest「{source_name}」")
+        if details.get("entities"):
+            entry_lines.append("- **新实体**：" + " · ".join(f"[[{e}]]" for e in details["entities"]))
+        if details.get("concepts"):
+            entry_lines.append("- **新概念**：" + " · ".join(f"[[{c}]]" for c in details["concepts"]))
+    elif operation == "review":
+        entry_lines.append("## 今天：Review 完成")
+        if details.get("source"):
+            entry_lines.append(f"- 来源：{details['source']}")
+    elif operation == "expand" and source_name:
+        entry_lines.append(f"## 今天：Expand「{source_name}」")
+    else:
+        entry_lines.append(f"## 今天：{operation}")
+        if details.get("source"):
+            entry_lines.append(f"- {details['source']}")
+    new_section = "\n".join(entry_lines)
 
-    # Read existing to preserve non-recent-ops sections
     existing = read_file(HOT_FILE)
-    recent_section = "\n".join(entries)
+    if not existing:
+        # Create fresh
+        body = f"# 🔥 Hot — 最近动态\n\n{new_section}\n\n---\n\n*上次更新：{today}*"
+    else:
+        # Strip frontmatter if present (legacy format)
+        body = existing
+        if body.lstrip().startswith("---"):
+            end = body.find("---", 3)
+            if end != -1:
+                body = body[end + 3:].lstrip("\n")
 
-    # Keep overview section if present
-    overview = ""
-    if existing and "## Wiki Overview" in existing:
-        parts = existing.split("## Recent Operations")
-        overview = parts[0].strip()
+        # Find last-updated line to insert before it
+        lines = body.rstrip("\n").split("\n")
+        insert_idx = len(lines)
+        for i in range(len(lines) - 1, -1, -1):
+            if lines[i].strip().startswith("*上次更新："):
+                insert_idx = i
+                # Update the date
+                lines[i] = f"*上次更新：{today}*"
+                break
 
-    # Assemble — keep under 500 words
-    body = recent_section
-    if overview:
-        body = overview + "\n\n" + body
+        # Prepend new section with divider
+        lines.insert(insert_idx, "")
+        lines.insert(insert_idx, "---")
+        lines.insert(insert_idx, "")
+        lines.insert(insert_idx, new_section)
+        body = "\n".join(lines)
+
+    # Keep under ~500 words
     words = body.split()
     if len(words) > 500:
-        body = " ".join(words[-450:])  # keep last ~450 words
+        body = " ".join(words[-450:])
 
-    frontmatter = f"---\nupdated: {now}\nlast_operation: {operation}\n---\n\n"
-    write_file(HOT_FILE, frontmatter + body + "\n")
+    write_file(HOT_FILE, body + "\n")
 
 
 # ── File locking ───────────────────────────────────────────────────────

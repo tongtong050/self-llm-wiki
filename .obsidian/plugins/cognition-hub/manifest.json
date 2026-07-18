@@ -1,9 +1,0 @@
-{
-	"id": "cognition-hub",
-	"name": "认知生产台",
-	"version": "0.1.0",
-	"minAppVersion": "1.8.0",
-	"description": "通用型个人知识库 —— 灵感捕获、知识卡片、AI 概念抽取与碰撞、认知生产管线闭环。",
-	"author": "Tongtong",
-	"isDesktopOnly": false
-}
