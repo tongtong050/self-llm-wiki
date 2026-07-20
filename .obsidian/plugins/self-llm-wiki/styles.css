@@ -852,3 +852,363 @@
   font-family: var(--font-mono); font-size: 0.56rem; color: var(--text-muted);
   flex-shrink: 0;
 }
+
+/* ── Settings / Modal textarea sizing ─────────── */
+.cognition-hub-textarea-tall textarea,
+.cognition-hub-textarea-tall {
+	height: 80px;
+}
+.cognition-hub-textarea-med textarea,
+.cognition-hub-textarea-med {
+	height: 100px;
+}
+
+/* ===== 认知生产台 · 灵感库（时间轴 × 来源脉络）===== */
+.cognition-dashboard {
+    padding: 16px 14px;
+    font-family: var(--font-interface);
+}
+
+/* 顶部标题 + 捕获按钮 */
+.cognition-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 14px;
+}
+.cognition-title {
+    margin: 0; font-size: 1.35em; font-weight: 600;
+    letter-spacing: 0.02em; color: var(--text-normal);
+}
+.cognition-capture-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 12px; border-radius: 999px;
+    background: var(--interactive-accent); color: var(--text-on-accent);
+    border: none; cursor: pointer; font-size: 0.85em; font-weight: 500;
+    box-shadow: none;
+}
+.cognition-capture-btn:hover { background: var(--interactive-accent-hover); }
+.cognition-capture-icon { font-size: 0.9em; }
+
+/* 来源占比 stacked 细带 */
+.cognition-source-bar {
+    display: flex; height: 4px; border-radius: 2px; overflow: hidden;
+    background: var(--background-modifier-border);
+    margin-bottom: 8px;
+}
+.cognition-source-seg { min-width: 3px; }
+.cognition-source-seg.src-external { background: var(--color-blue); }
+.cognition-source-seg.src-divergent { background: var(--color-purple); }
+.cognition-source-seg.src-problem { background: var(--color-orange); }
+
+/* 状态计数 */
+.cognition-counts {
+    display: flex; gap: 6px; align-items: center;
+    font-size: 0.78em; color: var(--text-muted);
+    margin-bottom: 20px;
+}
+.cognition-count-dot { color: var(--text-faint); }
+
+/* 空状态 */
+.cognition-empty-state {
+    text-align: center; padding: 48px 12px; color: var(--text-muted);
+}
+.cognition-empty-title { font-size: 1em; margin-bottom: 6px; color: var(--text-normal); }
+.cognition-empty-hint { font-size: 0.82em; color: var(--text-faint); }
+
+/* 时间轴 */
+.cognition-timeline { position: relative; }
+.cognition-tl-group { position: relative; padding-left: 18px; }
+/* 贯穿脊线 */
+.cognition-tl-group::before {
+    content: ''; position: absolute; left: 4px; top: 8px; bottom: 0;
+    width: 1px; background: var(--background-modifier-border);
+}
+/* 时间锚点 */
+.cognition-tl-anchor {
+    display: flex; align-items: center; gap: 8px;
+    margin: 14px 0 8px -18px; padding-left: 0;
+}
+.cognition-tl-node {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--text-muted); flex-shrink: 0; margin-left: 0.5px;
+}
+.cognition-tl-label {
+    font-size: 0.72em; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted);
+}
+
+/* 单条灵感：接点色条 + 卡片 */
+.cognition-tl-item {
+    display: flex; gap: 10px; align-items: stretch;
+    margin-bottom: 8px; cursor: pointer; border-radius: 6px;
+    padding: 2px; transition: background 0.12s ease;
+}
+.cognition-tl-item:hover { background: var(--background-secondary); }
+.cognition-tl-item.is-carded { opacity: 0.55; }
+
+/* 来源色条（左侧竖条 = signature）*/
+.cognition-tl-bar {
+    width: 2px; border-radius: 2px; flex-shrink: 0; align-self: stretch;
+}
+.cognition-tl-bar.src-external { background: var(--color-blue); }
+.cognition-tl-bar.src-divergent { background: var(--color-purple); }
+.cognition-tl-bar.src-problem { background: var(--color-orange); }
+
+.cognition-insp { flex: 1; min-width: 0; padding: 4px 2px; }
+.cognition-insp-body {
+    font-size: 0.9em; line-height: 1.4; color: var(--text-normal);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    margin-bottom: 4px;
+}
+.cognition-insp-meta {
+    display: flex; gap: 8px; align-items: center;
+    font-size: 0.72em; color: var(--text-muted);
+}
+.cognition-insp-meta .src-external { color: var(--color-blue); }
+.cognition-insp-meta .src-divergent { color: var(--color-purple); }
+.cognition-insp-meta .src-problem { color: var(--color-orange); }
+.cognition-insp-time { color: var(--text-faint); }
+.cognition-insp-badge {
+    color: var(--text-faint);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px; padding: 0 5px; font-size: 0.9em;
+}
+
+/* ===== 认知生产台 · Tab 栏 ===== */
+.cognition-tabbar {
+    display: flex; gap: 4px; margin: 0 0 14px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+.cognition-tab {
+    padding: 6px 12px; cursor: pointer; font-size: 0.9em;
+    color: var(--text-muted); border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+.cognition-tab:hover { color: var(--text-normal); }
+.cognition-tab.is-active {
+    color: var(--text-normal); font-weight: 600;
+    border-bottom-color: var(--interactive-accent);
+}
+
+/* ===== 认知生产台 · 概览看板 ===== */
+.cognition-ov-section { margin-bottom: 22px; }
+.cognition-ov-title {
+    font-size: 0.72em; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px;
+}
+.cognition-ov-empty { font-size: 0.85em; color: var(--text-faint); }
+
+/* 核心计数卡片 */
+.cognition-count-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+}
+.cognition-count-card {
+    background: var(--background-secondary); border-radius: 8px;
+    padding: 12px; text-align: center;
+}
+.cognition-count-num {
+    font-size: 1.6em; font-weight: 700; color: var(--text-normal);
+    line-height: 1.1;
+}
+.cognition-count-label {
+    font-size: 0.75em; color: var(--text-muted); margin-top: 4px;
+}
+
+/* 热力图 */
+.cognition-heat-grid { display: flex; gap: 3px; }
+.cognition-heat-week { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.cognition-heat-cell {
+    aspect-ratio: 1; border-radius: 2px;
+    background: var(--background-modifier-border);
+}
+.cognition-heat-cell.heat-l0 { background: var(--background-modifier-border); opacity: 0.5; }
+.cognition-heat-cell.heat-l1 { background: var(--interactive-accent); opacity: 0.3; }
+.cognition-heat-cell.heat-l2 { background: var(--interactive-accent); opacity: 0.5; }
+.cognition-heat-cell.heat-l3 { background: var(--interactive-accent); opacity: 0.75; }
+.cognition-heat-cell.heat-l4 { background: var(--interactive-accent); opacity: 1; }
+
+/* 来源分布横条 */
+.cognition-dist-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.cognition-dist-label { font-size: 0.8em; width: 60px; flex-shrink: 0; }
+.cognition-dist-track {
+    flex: 1; height: 8px; border-radius: 4px;
+    background: var(--background-modifier-border); overflow: hidden;
+}
+.cognition-dist-fill { height: 100%; border-radius: 4px; }
+.cognition-dist-fill.src-external { background: var(--color-blue); }
+.cognition-dist-fill.src-divergent { background: var(--color-purple); }
+.cognition-dist-fill.src-problem { background: var(--color-orange); }
+.cognition-dist-label.src-external { color: var(--color-blue); }
+.cognition-dist-label.src-divergent { color: var(--color-purple); }
+.cognition-dist-label.src-problem { color: var(--color-orange); }
+.cognition-dist-val {
+    font-size: 0.78em; color: var(--text-muted); width: 24px;
+    text-align: right; flex-shrink: 0;
+}
+
+/* 标签云 */
+.cognition-tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+.cognition-tag-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 9px; border-radius: 999px;
+    background: var(--background-secondary); color: var(--text-normal);
+}
+.cognition-tag-count { color: var(--text-faint); font-size: 0.8em; }
+
+/* ===== 认知生产台 · 扩写按钮 ===== */
+.cognition-expand-btn {
+    background: transparent; border: 1px solid var(--background-modifier-border);
+    color: var(--text-muted); border-radius: 4px; padding: 0 6px;
+    font-size: 0.9em; cursor: pointer; line-height: 1.4;
+}
+.cognition-expand-btn:hover {
+    color: var(--text-normal); border-color: var(--interactive-accent);
+}
+
+/* ===== 认知生产台 · 管线 / Review Tab ===== */
+.cognition-pl-section { margin-bottom: 22px; }
+.cognition-pl-title {
+    font-size: 0.72em; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px;
+}
+.cognition-pl-empty { font-size: 0.85em; color: var(--text-faint); }
+
+.cognition-pl-actions { display: flex; flex-direction: column; gap: 8px; }
+.cognition-pl-btn {
+    text-align: left; padding: 8px 12px; border-radius: 6px;
+    background: var(--background-secondary); color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border); cursor: pointer;
+    font-size: 0.88em;
+}
+.cognition-pl-btn:hover:not(.is-disabled) {
+    border-color: var(--interactive-accent);
+}
+.cognition-pl-btn.is-disabled {
+    opacity: 0.45; cursor: not-allowed;
+}
+
+.cognition-pl-card {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; padding: 6px 8px; margin-bottom: 6px; border-radius: 6px;
+    background: var(--background-secondary);
+}
+.cognition-pl-card-title {
+    font-size: 0.85em; color: var(--text-normal);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cognition-pl-card-btn {
+    flex-shrink: 0; background: transparent; cursor: pointer;
+    border: 1px solid var(--background-modifier-border); border-radius: 4px;
+    color: var(--text-muted); padding: 2px 8px; font-size: 0.8em;
+}
+.cognition-pl-card-btn:hover { color: var(--text-normal); border-color: var(--interactive-accent); }
+
+.cognition-pl-review {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 0.85em; color: var(--text-normal); margin-bottom: 6px;
+}
+.cognition-pl-check { color: var(--text-muted); flex-shrink: 0; }
+.cognition-pl-review-text { min-width: 0; }
+
+.cognition-pl-log-line {
+    font-size: 0.78em; color: var(--text-muted); line-height: 1.5;
+    font-family: var(--font-monospace);
+}
+
+/* ===== 认知生产台 · Wiki/概念 Tab ===== */
+.cognition-wiki-section { margin-bottom: 22px; }
+.cognition-wiki-stitle {
+    font-size: 0.72em; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px;
+}
+.cognition-wiki-empty { font-size: 0.85em; color: var(--text-faint); }
+
+.cognition-wiki-countgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.cognition-wiki-countcard {
+    background: var(--background-secondary); border-radius: 8px;
+    padding: 12px; text-align: center;
+}
+.cognition-wiki-countnum { font-size: 1.5em; font-weight: 700; color: var(--text-normal); line-height: 1.1; }
+.cognition-wiki-countlabel { font-size: 0.72em; color: var(--text-muted); margin-top: 4px; }
+
+.cognition-wiki-graphbtn {
+    width: 100%; padding: 8px; border-radius: 6px; cursor: pointer;
+    background: var(--background-secondary); color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border); font-size: 0.88em;
+}
+.cognition-wiki-graphbtn:hover { border-color: var(--interactive-accent); }
+
+.cognition-wiki-search {
+    width: 100%; padding: 6px 10px; border-radius: 6px;
+    background: var(--background-primary); color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border); margin-bottom: 8px;
+}
+.cognition-wiki-results { display: flex; flex-direction: column; gap: 4px; }
+.cognition-wiki-resultrow {
+    padding: 5px 8px; border-radius: 4px; cursor: pointer;
+    background: var(--background-secondary); font-size: 0.85em;
+}
+.cognition-wiki-resultrow:hover { background: var(--background-modifier-hover); }
+
+.cognition-wiki-distrow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.cognition-wiki-distlabel { font-size: 0.8em; width: 72px; flex-shrink: 0; color: var(--text-muted); }
+.cognition-wiki-disttrack {
+    flex: 1; height: 8px; border-radius: 4px;
+    background: var(--background-modifier-border); overflow: hidden;
+}
+.cognition-wiki-distfill { height: 100%; border-radius: 4px; background: var(--interactive-accent); }
+.cognition-wiki-distval { font-size: 0.78em; color: var(--text-muted); width: 24px; text-align: right; flex-shrink: 0; }
+
+.cognition-wiki-recentrow {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 5px 8px; border-radius: 4px; cursor: pointer;
+    background: var(--background-secondary); margin-bottom: 4px; font-size: 0.85em;
+}
+.cognition-wiki-recentrow:hover { background: var(--background-modifier-hover); }
+.cognition-wiki-recenttitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cognition-wiki-recentdisc { color: var(--text-faint); font-size: 0.85em; flex-shrink: 0; }
+
+/* ===== 认知生产台 · 项目 Tab ===== */
+.cognition-subnav {
+    display: flex; gap: 4px; margin-bottom: 14px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+.cognition-subtab {
+    padding: 5px 10px; cursor: pointer; font-size: 0.82em;
+    color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.cognition-subtab:hover { color: var(--text-normal); }
+.cognition-subtab.is-active {
+    color: var(--text-normal); font-weight: 600; border-bottom-color: var(--interactive-accent);
+}
+.cognition-subbody { }
+.cognition-proj-empty { font-size: 0.85em; color: var(--text-faint); }
+.cognition-proj-hint { font-size: 0.8em; color: var(--text-muted); margin: 6px 0; }
+
+.cognition-proj-actions { margin-bottom: 12px; }
+
+.cognition-proj-card, .cognition-arch-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 6px 8px; margin-bottom: 6px; border-radius: 6px;
+    background: var(--background-secondary); cursor: pointer; font-size: 0.85em;
+}
+.cognition-proj-card:hover, .cognition-arch-row:hover { background: var(--background-modifier-hover); }
+.cognition-proj-title, .cognition-arch-title {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cognition-proj-date { color: var(--text-faint); font-size: 0.9em; flex-shrink: 0; }
+
+.cognition-arch-days { color: var(--text-muted); font-size: 0.9em; flex-shrink: 0; }
+.cognition-arch-days.is-expired { color: var(--text-error); font-weight: 600; }
+.cognition-arch-retain {
+    color: var(--text-accent); font-size: 0.85em; flex-shrink: 0;
+    border: 1px solid var(--background-modifier-border); border-radius: 4px; padding: 0 5px;
+}
+
+.cognition-rss-input {
+    width: 100%; min-height: 100px; padding: 8px; border-radius: 6px;
+    background: var(--background-primary); color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border); font-family: var(--font-monospace);
+    font-size: 0.82em; resize: vertical;
+}
